@@ -16,6 +16,8 @@
 #include "semphr.h"
 #include "system.h"
 #include <string.h>
+#include "driverlib/rom.h"
+#include "driverlib/rom_map.h"
 
 SemaphoreHandle_t IMU_mutex;
 void IMUTask(void *pvParameters)
@@ -81,8 +83,8 @@ void IMUTask(void *pvParameters)
      char Roll_String[16];
 
      /*Sample rate = System frequency / desired sample frequency*/
-     uint32_t Sample_Rate = SysCtlClockGet()/100;
-     sprintf(p_message->data.loggerData,"%s\n","L DEBUG INFO:IMU initialised");
+     uint32_t Sample_Rate = MAP_SysCtlClockGet()/100;
+     sprintf(p_message->data.loggerData,"%s\n","L TIVA DEBUG INFO:IMU initialised");
      //strcpy(p_message->data.loggerData,"FATAL\n");
      if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
                UARTprintf("Error\n");
@@ -135,8 +137,10 @@ void IMUTask(void *pvParameters)
                   UARTprintf("Error\n");
               }
          xSemaphoreGive(IMU_mutex);
+         int i;
          /*delay 10 ms*/
-         SysCtlDelay(Sample_Rate);
+         MAP_SysCtlDelay(Sample_Rate);
+         //for(i =0;i<10000;i++);
      }
 }
 
