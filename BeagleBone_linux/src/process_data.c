@@ -51,29 +51,30 @@ void *processThread(void *threadp){
                      Yaw = 0.98 * Yaw + 0.02 * Acceleration_Yaw;
                      
                      printf("pitch : %f\n", Pitch);
+                     printf("roll : %f\n", Roll);
                      
-                     if (Pitch > 0.5){
+                     if (Pitch > 20){
                             
                             
                             led_send.data.LED.LED1 = GLOW;
                             led_send.data.LED.LED2 = DARK;
-                            led_send.data.LED.LED3 = DARK;
-                            led_send.data.LED.LED4 = DARK;
-                     }else if(Pitch < 0.5){
+                            // led_send.data.LED.LED3 = DARK;
+                            // led_send.data.LED.LED4 = DARK;
+                     }else if(Pitch < -20){
                             led_send.data.LED.LED1 = DARK;
                             led_send.data.LED.LED2 = GLOW;
-                            led_send.data.LED.LED3 = DARK;
-                            led_send.data.LED.LED4 = DARK;
+                            // led_send.data.LED.LED3 = DARK;
+                            // led_send.data.LED.LED4 = DARK;
                      }
                      
-                     if (Roll > 0.5){
-                            led_send.data.LED.LED1 = DARK;
-                            led_send.data.LED.LED2 = DARK;
+                     if (Roll > 0){
+                            // led_send.data.LED.LED1 = DARK;
+                            // led_send.data.LED.LED2 = DARK;
                             led_send.data.LED.LED3 = GLOW;
                             led_send.data.LED.LED4 = DARK;
-                     }else if(Roll < 0.5){
-                            led_send.data.LED.LED1 = DARK;
-                            led_send.data.LED.LED2 = DARK;
+                     }else if(Roll < 0){
+                            // led_send.data.LED.LED1 = DARK;
+                            // led_send.data.LED.LED2 = DARK;
                             led_send.data.LED.LED3 = DARK;
                             led_send.data.LED.LED4 = GLOW;
                             

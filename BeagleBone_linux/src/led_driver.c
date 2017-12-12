@@ -63,7 +63,7 @@ int set_LED2(char* val){
        
        FILE *fp;
        
-       if((fp = fopen("/sys/class/gpio/gpio68/value", "w+"))!=NULL){
+       if((fp = fopen("/sys/class/gpio/gpio67/value", "w+"))!=NULL){
                fwrite(val, 1, 1 , fp);
                fclose(fp);
        }else{
@@ -78,7 +78,7 @@ int set_LED3(char* val){
        
        FILE *fp;
        
-       if((fp = fopen("/sys/class/gpio/gpio68/value", "w+"))!=NULL){
+       if((fp = fopen("/sys/class/gpio/gpio69/value", "w+"))!=NULL){
                fwrite(val, 1, 1 , fp);
                fclose(fp);
        }else{
@@ -92,7 +92,7 @@ int set_LED4(char* val){
        
        FILE *fp;
        
-       if((fp = fopen("/sys/class/gpio/gpio68/value", "w+"))!=NULL){
+       if((fp = fopen("/sys/class/gpio/gpio66/value", "w+"))!=NULL){
                fwrite(val, 1, 1 , fp);
                fclose(fp);
        }else{
@@ -123,23 +123,29 @@ void *ledThread(void *threadp){
                      
                      if(sensor_recv.data.LED.LED1 == GLOW){
                             
+                            printf("LED1 ON\n");
                             set_LED1("1");
                             set_LED2("0");
-                            set_LED3("0");
-                            set_LED4("0");
+                            // set_LED3("0");
+                            // set_LED4("0");
                      }else if(sensor_recv.data.LED.LED2 == GLOW){
+                            printf("LED2 ON\n");
                             set_LED1("0");
                             set_LED2("1");
-                            set_LED3("0");
-                            set_LED4("0");
-                     }else if(sensor_recv.data.LED.LED3 == GLOW){
-                            set_LED1("0");
-                            set_LED2("0");
+                            // set_LED3("0");
+                            // set_LED4("0");
+                     }
+                     
+                     if(sensor_recv.data.LED.LED3 == GLOW){
+                            printf("LED3 ON\n");
+                            // set_LED1("0");
+                            // set_LED2("0");
                             set_LED3("1");
                             set_LED4("0");
                      }else if(sensor_recv.data.LED.LED4 == GLOW){
-                            set_LED1("0");
-                            set_LED2("0");
+                            printf("LED4 ON\n");
+                            // set_LED1("0");
+                            // set_LED2("0");
                             set_LED3("0");
                             set_LED4("1");
                      }
