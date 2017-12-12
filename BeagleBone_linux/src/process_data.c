@@ -1,11 +1,13 @@
 #include "system.h"
 #include "math.h"
+#include "communication.h"
 
 void *processThread(void *threadp){
        
        printf("processor thread\n");
        message_t sensor_recv;
        message_t led_send;
+       message_t tiva_send;
        int nbytes, prio;
        float Acceleration[3], Degrees[3];
        float acceleration_bias[3]={0.0,0.0,0.0};
@@ -80,6 +82,15 @@ void *processThread(void *threadp){
                             
                      }
                      
+                     if(Pitch > 20 || Pitch < -20 || Roll > 20 || Roll < -20){
+                            //tiva_send.status = FATAL;
+                            transfer_bytes(fd, "FATAL\n");
+                            
+                     }else{
+                            // tiva_send.status = NON_FATAL;
+                            transfer_bytes(fd, "NON_FATAL\n");
+                     }
+                     
                      if((nbytes = mq_send(led_mq, (char *)&led_send, sizeof(led_send), 30)) == ERROR)
                      {
                             printf("%d\n",nbytes);
@@ -90,6 +101,15 @@ void *processThread(void *threadp){
                             printf("Sending LED data to process MQ %d bytes: message successfully sent\n", nbytes);
                      }
                      
+                     // if((nbytes = mq_send(send_mq, (char *)&tiva_send, sizeof(tiva_send), 30)) == ERROR)
+                     // {
+                     //        printf("%d\n",nbytes);
+                     //        perror("mq_send");
+                     // }
+                     // else
+                     // {
+                     //        printf("Sending fatal/non fatal info to Send MQ %d bytes: message successfully sent\n", nbytes);
+                     // }
                      
                      
                      

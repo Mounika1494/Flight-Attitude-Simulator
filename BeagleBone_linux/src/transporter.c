@@ -20,7 +20,9 @@ void *uartThread(void *threadp){
        printf("uart thread\n");
        char *device = "/dev/ttyO1";
        message_t sensor_recv;
+       message_t tiva_send;
        int nbytes;
+       int prio;
        char *temp;
        int i =0;
        printf("%s\n", str);
@@ -46,6 +48,13 @@ void *uartThread(void *threadp){
 		
 	       }
               read_bytes(fd, str);
+              
+              if(*str==0 || strlen(str)==1){
+                     printf("************************************\n");
+                     continue;
+              }
+              
+              printf("string from tiva: %s\n\n", str);
               strcpy(debug, str);
               temp = strtok(str, " ");
        
@@ -91,7 +100,7 @@ void *uartThread(void *threadp){
                      }
                      
                      
-              }else {
+              }else if(strcmp(temp,"L")==0) {
                      
                      strcpy(sensor_recv.data.logger_data, debug);
                      if((nbytes = mq_send(log_mq, (char *)&sensor_recv, sizeof(sensor_recv), 30)) == ERROR)
@@ -103,10 +112,29 @@ void *uartThread(void *threadp){
                             printf("Sending IMU data to LOG MQ %d bytes: message successfully sent\n", nbytes);
                      }
                      
-                     }
                      
-                     
+              }else{
+                     printf("Error: Unknown data format\n");
+                     read_bytes(fd, str);
+                     continue;
               }
+              
+              
+              
+              // if((nbytes = mq_receive(send_mq,(char*)&tiva_send, MAX_MSG_SIZE, &prio)) == ERROR)
+              // {
+              //        perror("mq_receive");
+              // }
+              // else{
+              //        printf("Sending to Tiva\n");
+              //        if(tiva_send.status == FATAL){
+              //               transfer_bytes(fd, "FATAL\n");
+	
+              //        }else if(tiva_send.status == NON_FATAL){
+              //               transfer_bytes(fd, "NON_FATAL\n");
+              //        }
+              // }
+       }
        
        
 }

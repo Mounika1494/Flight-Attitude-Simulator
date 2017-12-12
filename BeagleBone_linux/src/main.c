@@ -30,6 +30,11 @@ int main(){
     if(proc_mq == (mqd_t)ERROR){ 
      error_flag = 1; 
     }
+    
+    send_mq = mq_open(SNDRCV_MQ6, O_CREAT|O_RDWR, S_IRWXU, &mq_attr);
+    if(proc_mq == (mqd_t)ERROR){ 
+     error_flag = 1; 
+    }
        
     printf("creating threads\n");
    	//Thread creation

@@ -7,6 +7,13 @@ void *logThread(void *threadp){
        printf("logger thread\n");
        message_t sensor_recv;
        int nbytes, prio;
+       FILE *fp_logger;
+       fp_logger = fopen("logger.txt", "a");
+       if(fp_logger == NULL)
+       {
+              printf("Couldn't log status \n");
+              exit(-1);
+       }
        
        while(1){
               
@@ -17,12 +24,8 @@ void *logThread(void *threadp){
               }
               else{
                      
-                     
-                     printf("%s\n", sensor_recv.data.logger_data);
-                     
-                     
-                     
-                     
+                     //printf("%s\n", sensor_recv.data.logger_data);
+                     fprintf(fp_logger, "%s\n\n", sensor_recv.data.logger_data);
                      
               }
               
