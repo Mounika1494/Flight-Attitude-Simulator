@@ -13,38 +13,7 @@ void int_handler(){
        
 }
 
-// uint8_t check_and_parse(char *str){
-       
-//        char *temp;
-//        int i =0;
-//        printf("%s\n", str);
-//        temp = strtok(str, " ");
-       
-//        // if(strcmp(temp, "L")==0){
-//        //        printf("LOG\n");
-//        //         return LOG;
-              
-//        // }
-             
-//        while (temp != NULL)
-//        {
-//               printf ("%s\n",temp);
-//               temp = strtok (NULL, " ");
-              
-//               if(temp != NULL){
-              
-//                      if(i<3){
-//                             Acceleration[i] = atof(temp);
-//                      }else{
-//                             Degrees[i%3] = atof(temp);
-//                      }
-//                      //printf("float: %f\n", atof(temp));
-//               }
-//        ++i;
-//        }
-//        return DATA;
-       
-// }
+
 
 void *uartThread(void *threadp){
        

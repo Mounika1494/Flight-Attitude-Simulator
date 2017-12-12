@@ -41,7 +41,12 @@ mqd_t proc_mq, log_mq;
 mqd_t led_mq;
 
 
-
+typedef struct{
+       uint8_t LED1;
+       uint8_t LED2;
+       uint8_t LED3;
+       uint8_t LED4;
+}LED_t;
 
 typedef struct{
        
@@ -56,7 +61,14 @@ typedef struct{
 typedef union{
        IMUdata_t IMUdata;
        char logger_data[MAX_SIZE];
+       LED_t LED;
+       
 }data_t;
+
+typedef enum{
+       GLOW = 1,
+       DARK
+}actuator_t;
 
 typedef enum{
        BAD = 1,
