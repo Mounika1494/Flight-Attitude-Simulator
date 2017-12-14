@@ -1,10 +1,22 @@
-/*
- * system.h
- *
- *  Created on: Dec 1, 2017
- *      Author: Mounika Reddy
- */
-
+/**********************************************************************************************************
+* Copyright (C) 2017 by Mounika Reddy Edula Jayakrishnan.H.J
+*
+*Redistribution,modification or use of this software in source or binary format is permitted as long
+*as the files maintain this copyright.Mounika Reddy Edula is not liable for any misuse of this material
+*
+*********************************************************************************************************/
+/**
+* @file console.h
+* @brief to create all tasks,Queues,Message API
+*
+*This header file provides create all tasks,Queues,Message API structures
+*
+* @author Mounika Reddy Edula
+* @       JayaKrishnan H.J
+* @date September 12/11/2017
+* @version 1.0
+*
+*/
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 

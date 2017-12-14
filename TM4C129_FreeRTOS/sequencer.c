@@ -1,9 +1,14 @@
-/*
- * sequencer.c
- *
- *  Created on: Dec 1, 2017
- *      Author: Mounika Reddy
- */
+/**************************************************************************************
+*@Filename:mpu.c
+*
+*@Description: Implementation of timer to check the system_status array updated in monitor task
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "main.h"
 
 // FreeRTOS includes
@@ -28,6 +33,7 @@
 TimerHandle_t xTimer;
 int lExpireCounters;
 int status_check[3] = {0,0,0};
+//Timer callback
 void vTimerCallback( TimerHandle_t  *pxTimer )
  {
      message_t message;
@@ -63,12 +69,14 @@ void vTimerCallback( TimerHandle_t  *pxTimer )
           }
           if(status_check[2] >10)
           {
+              //On IMU thread dead then stop the task scheduling as everything is just pointless
               LEDWrite(0x0F, 0x08);
               sprintf(p_message->data.loggerData,"%s\n","L TIVA DEBUG ERROR: IMU thread is dead\n");
               if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
                          UARTprintf("Error\n");
                      }
               UARTprintf("IMU task is dead\n");
+              vTaskEndScheduler();
           }
          if(system_status[0] == -1)
              status_check[0]++;
@@ -97,6 +105,7 @@ void vTimerCallback( TimerHandle_t  *pxTimer )
      }
  }
 
+//Sequencer task which creates timers
 void sequencerTask(void *pvParameters)
 {
     int error_flag = 0;

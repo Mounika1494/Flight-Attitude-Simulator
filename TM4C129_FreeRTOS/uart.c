@@ -1,9 +1,14 @@
-/*
- * uart.c
- *
- *  Created on: Dec 10, 2017
- *      Author: Mounika Reddy
- */
+/**************************************************************************************
+*@Filename:uart.c
+*
+*@Description: Implementation of uart driver communication with BBG using UART3
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
 #include "task.h"
