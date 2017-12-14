@@ -1,5 +1,17 @@
 #include "console.h"
 
+/**************************************************************************************
+*@Filename:i2c.c
+*
+*@Description: Initialise the UART pins and Clock for using UARTPrintf
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
+//Initialise the GPIO pins as UART and enable clock
 void InitConsole(void){
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);

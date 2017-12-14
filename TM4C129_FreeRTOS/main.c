@@ -1,3 +1,15 @@
+/**************************************************************************************
+*@Filename:main.c
+*
+*@Description: Thread which creates all the queues, threads, starts scheduler
+*               any error  will be pushed to logger queue
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "mpu9250.h"
 #include "console.h"
 
@@ -21,9 +33,8 @@
 
 #include "uart.h"
 
-#define M_PI    3.14159265359
 
-
+//Task handles for all threads
 TaskHandle_t EEPROMTaskHandle;
 TaskHandle_t IMUTaskHandle;
 TaskHandle_t sequencerTaskHandle;
@@ -39,14 +50,20 @@ int main(void)
     p_message = &message;
     BaseType_t xReturned;
     MAP_SysCtlClockFreqSet((SYSCTL_XTAL_25MHZ |
-                                                 SYSCTL_OSC_MAIN |
-                                                 SYSCTL_USE_PLL |
-                                                 SYSCTL_CFG_VCO_480), 120000000);
+                            SYSCTL_OSC_MAIN |
+                            SYSCTL_USE_PLL |
+                            SYSCTL_CFG_VCO_480), 120000000);
+    //Array which initialises system status to default values
     system_status[0] = -1;
     system_status[1] = -1;
     system_status[2] = -1;
+
+    //Initialise the console for UARTprintf
     InitConsole();
+    //Initialise the uart for communication with BBG
     uart_init();
+
+    //Create queues and on any error error flag will be set to 1
     Socket_Queue = xQueueCreate(1000,sizeof(message_t *));
     if(Socket_Queue == NULL)
         flag = 1;
@@ -56,6 +73,8 @@ int main(void)
     EEPROM_Queue = xQueueCreate(1000,sizeof(EEPROM_data));
     if(EEPROM_Queue == NULL)
         flag = 1;
+
+    //Create tasks and on any error error flag will be set to 1
     xReturned = xTaskCreate(monitorTask, (const portCHAR *)"monitor",
                     configMINIMAL_STACK_SIZE, NULL, 1, &monitorTaskHandle);
     if( xReturned == pdFAIL )
@@ -106,6 +125,7 @@ int main(void)
                }
 
     }
+    //Start the scheduler
     vTaskStartScheduler();
     return 0;
 }

@@ -1,9 +1,14 @@
-/*
- * logger.c
- *
- *  Created on: Dec 10, 2017
- *      Author: Mounika Reddy
- */
+/**************************************************************************************
+*@Filename:logger.c
+*
+*@Description: Impleentation of logger thread which sends the log data to BBG
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -14,12 +19,14 @@
 #include <string.h>
 #include <stdio.h>
 
+//Semaphore to disable preemption
 SemaphoreHandle_t logger_mutex;
 void loggerTask(void *pvParameters)
 {
     message_t message;
     message_t *p_message;
     p_message = &message;
+
     char buffer[120];
     logger_mutex = xSemaphoreCreateMutex();
     if(logger_mutex == NULL)
@@ -42,6 +49,7 @@ while(1)
                           UARTprintf("Error\n");
                       }
              }
+        //Send data to BBG
         UARTSendbytes(buffer,strlen(buffer) + 1);
         if(xTaskNotify(monitorTaskHandle,0x01,eSetValueWithOverwrite) != pdPASS)
         {

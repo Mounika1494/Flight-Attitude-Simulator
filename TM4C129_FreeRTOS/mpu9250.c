@@ -1,5 +1,17 @@
+/**************************************************************************************
+*@Filename:mpu9250.c
+*
+*@Description: mpu9250 calibrate read accelerometer,gyroscope,temperature from sensors
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "mpu9250.h"
 
+//MPU9250 calibration
 void MPU9250_calibrate(float *acceleration_bias, float *degree_bias){
     uint8_t raw_accel[6];
     uint8_t raw_gyro[6];
@@ -53,6 +65,7 @@ void MPU9250_calibrate(float *acceleration_bias, float *degree_bias){
     degree_bias[2] = (float)(250 * deg_bias[2])/32768;
 }
 
+//Read MPU9250 accelerometer
 void MPU9250_Accelerometer(float *acceleration){
     uint8_t raw_accel[6];
     int16_t accel[3];
@@ -68,6 +81,7 @@ void MPU9250_Accelerometer(float *acceleration){
     acceleration[2] = (float)(2 * accel[2])/32768;
 }
 
+//Read Gyroscope registers
 void MPU9250_Gyroscope(float *degrees){
     uint8_t raw_gyro[6];
     int16_t deg[3];
@@ -83,6 +97,7 @@ void MPU9250_Gyroscope(float *degrees){
     degrees[2] = (float)(250 * deg[2])/32768.0;
 }
 
+//Read Temperature registers
 void MPU9250_Temperature(float *temperature){
     uint8_t raw_temp[2];
     uint16_t temp;
@@ -94,6 +109,7 @@ void MPU9250_Temperature(float *temperature){
     *temperature = (float)(temp / 333.87) + 21.0;
 }
 
+//Read both Accelerometer and Gyroscope values
 void MPU9250_Motion(float *acceleration, float *degrees){
     MPU9250_Accelerometer(acceleration);
     MPU9250_Gyroscope(degrees);

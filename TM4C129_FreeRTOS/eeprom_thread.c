@@ -1,10 +1,15 @@
-/*
- * eeprom.c
- *
- *  Created on: Dec 10, 2017
- *      Author: Mounika Reddy
- */
-
+/**************************************************************************************
+*@Filename:eeprom_thread.c
+*
+*@Description: Implementation of EEPROM thread to log data. Any error
+*              data is pushed to logger queue
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include <stdint.h>
 #include <stdbool.h>
 #include "inc/hw_memmap.h"
@@ -24,7 +29,7 @@
 #include "system.h"
 #include <string.h>
 
-
+//Initialise EEPROM for writing data and reading to EEPROM
 void EEPROMTask(void *pvParameters)
 {
     message_t message;
@@ -45,7 +50,6 @@ void EEPROMTask(void *pvParameters)
               UARTprintf("Error\n");
           }
     char buffer[10];
-    char recv_buffer[10];
     while(1)
     {
         if(xQueueReceive(EEPROM_Queue, buffer, portMAX_DELAY ) == pdTRUE)

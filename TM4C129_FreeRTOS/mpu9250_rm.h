@@ -1,9 +1,22 @@
-/*
- * MPU9250_RM.h
- *
- *  Created on: Apr 2, 2017
- *      Author: alex
- */
+/**********************************************************************************************************
+* Copyright (C) 2017 by Mounika Reddy Edula Jayakrishnan.H.J
+*
+*Redistribution,modification or use of this software in source or binary format is permitted as long
+*as the files maintain this copyright.Mounika Reddy Edula is not liable for any misuse of this material
+*
+*********************************************************************************************************/
+/**
+* @file mpu9250_rm.h
+* @brief MPU9250 driver using I2C
+*
+* This header file provides register map
+*
+* @author Mounika Reddy Edula
+* @       JayaKrishnan H.J
+* @date September 12/11/2017
+* @version 1.0
+*
+*/
 
 #ifndef MPU9250_RM_H_
 #define MPU9250_RM_H_

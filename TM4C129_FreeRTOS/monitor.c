@@ -1,9 +1,15 @@
-/*
- * monitor.c
- *
- *  Created on: Dec 12, 2017
- *      Author: Mounika Reddy
- */
+/**************************************************************************************
+*@Filename:monitor.c
+*
+*@Description: Implementation of heart beat monitor task which recieves messages from all
+*              tasks
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include <stdbool.h>
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"

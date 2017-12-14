@@ -1,9 +1,15 @@
-/*
- * IMU.c
- *
- *  Created on: Dec 4, 2017
- *      Author: Mounika Reddy
- */
+/**************************************************************************************
+*@Filename:IMU.c
+*
+*@Description: Implementation of IMU thread which iniitialises I2C and configures
+*              all registers for making IMU work
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "mpu9250.h"
 #include "console.h"
 #include <math.h>
@@ -18,6 +24,7 @@
 #include "driverlib/rom.h"
 #include "driverlib/rom_map.h"
 
+//Mutex to prevent preemption
 SemaphoreHandle_t IMU_mutex;
 void IMUTask(void *pvParameters)
 {
@@ -25,7 +32,7 @@ void IMUTask(void *pvParameters)
     message_t message;
     message_t *p_message;
     p_message = &message;
-    I2C_Init();
+    I2C_Init();//I2C initalisation
     IMU_mutex = xSemaphoreCreateMutex();
     if(IMU_mutex == NULL)
      {
@@ -35,8 +42,7 @@ void IMUTask(void *pvParameters)
                  }
      }
      uint8_t id;
-
-     /*Checking connection here*/
+     //Test to check I2C working
      id = MPU_WhoAmI();
      if(id == 0x71){
          sprintf(p_message->data.loggerData,"%s\n","L TIVA IMU: I2C initialised\n");

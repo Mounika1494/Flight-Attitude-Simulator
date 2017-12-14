@@ -1,7 +1,20 @@
 #include "i2c.h"
-
+/**************************************************************************************
+*@Filename:i2c.c
+*
+*@Description: Implementation of i2c driver for I2C2. For initializing i2c,read one byte
+*read n bytes,write one byte,write n bytes are implemented
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
+//Mutex lock to disable preemption
 SemaphoreHandle_t i2c_mutex;
 
+//I2C initialisation enabling I2C,clock and GPIO
 void I2C_Init(void){
     uint32_t sys_Clock;
         //enable GPIO peripheral that contains I2C 0
@@ -44,6 +57,8 @@ void I2C_Init(void){
     //I2CMasterInitExpClk(I2C0_BASE, SysCtlClockGet(), true);
 }
 
+
+//Write n bytes to specified device address
 void I2C_WriteBytes(uint8_t device_address, uint8_t device_register, uint8_t *data, uint8_t lenght){
 
     if(xSemaphoreTake(i2c_mutex,portMAX_DELAY) != pdTRUE)
@@ -71,11 +86,12 @@ void I2C_WriteBytes(uint8_t device_address, uint8_t device_register, uint8_t *da
 
 }
 
+//Write 1 byte internally using n bytes with 1
 void I2C_WriteByte(uint8_t device_address, uint8_t device_register, uint8_t data){
     I2C_WriteBytes(device_address, device_register, &data, 1);
 }
 
-
+//Read n bytes from device specified
 void I2C_ReadBytes(uint8_t device_address, uint8_t device_register, uint8_t *data, uint8_t lenght){
     if(xSemaphoreTake(i2c_mutex,portMAX_DELAY) != pdTRUE)
         {
@@ -107,7 +123,7 @@ void I2C_ReadBytes(uint8_t device_address, uint8_t device_register, uint8_t *dat
     xSemaphoreGive(i2c_mutex);
 }
 
-
+//Read Single byte from device address specified and returns the register value read
 uint8_t I2C_ReadByte(uint8_t device_address, uint8_t device_register){
     if(xSemaphoreTake(i2c_mutex,portMAX_DELAY) != pdTRUE)
     {

@@ -1,3 +1,22 @@
+/**********************************************************************************************************
+* Copyright (C) 2017 by Mounika Reddy Edula Jayakrishnan.H.J
+*
+*Redistribution,modification or use of this software in source or binary format is permitted as long
+*as the files maintain this copyright.Mounika Reddy Edula is not liable for any misuse of this material
+*
+*********************************************************************************************************/
+/**
+* @file mpu.h
+* @brief MPU9250 driver using I2C
+*
+* This header file provides functions to initialise IMU,read and write data to registers
+*
+* @author Mounika Reddy Edula
+* @       JayaKrishnan H.J
+* @date September 12/11/2017
+* @version 1.0
+*
+*/
 #ifndef MPU_H_
 #define MPU_H_
 
@@ -140,158 +159,806 @@
 
 
 /*Self Test Gyroscope and Accelerometer Registers*/
+
+/***
+* @brief To test the mechanical and electrical postions of the sensors
+*
+* @param data - to write to the register
+*
+* @return void
+*/
 void MPU_WriteSelfTestGyro(uint8_t *data);
+
+/***
+* @brief To test the mechanical and electrical postions of the sensors
+*
+* @param data - pointer for read value to the register
+*
+* @return void
+*/
 void MPU_ReadSelfTestGyro(uint8_t *data);
+
+/***
+* @brief To test the mechanical and electrical postions of the sensors
+*
+* @param data - to write to the register
+*
+* @return void
+*/
 void MPU_WriteSelfTestAcce(uint8_t *data);
+
+/***
+* @brief To test the mechanical and electrical postions of the sensors
+*
+* @param data - pointer for read value to the register
+*
+* @return void
+*/
 void MPU_ReadSelfTestAcce(uint8_t *data);
 
 /*Offsets Gyroscope and Accelerometer Registers*/
+
+/***
+* @brief To set the offset
+*
+* @param data - write value to the register
+*
+* @return void
+*/
 void MPU_WriteOffsetsGyro(uint8_t *data);
+
+/***
+* @brief Read offset register
+*
+* @param data - pointer for read value to the register
+*
+* @return void
+*/
 void MPU_ReadOffsetsGyro(uint8_t *data);
+
+/***
+* @brief To set the offset
+*
+* @param data - write value to the register
+*
+* @return void
+*/
 void MPU_WriteOffsetsAcce(uint8_t *data);
+
+/***
+* @brief Read Offset Accelerometer register
+*
+* @param data - pointer for read value to the register
+*
+* @return void
+*/
 void MPU_ReadOffsetsAcce(uint8_t *data);
 
 /*Sample Rate Divider Register*/
+/***
+* @brief To set the sample rate of data
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteSampleRateDivider(uint8_t data);
+
+/***
+* @brief To read the sample rate of data
+*
+* @param void
+*
+* @return data - read from sample rate register
+*/
 uint8_t MPU_ReadSampleRateDivider(void);
 
 /*Configuration Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteConfiguration(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadConfiguration(void);
 
 /*Gyroscope Configuration Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteGyroConfiguration(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadGyroConfiguration(void);
 
 /*Accelerometer Configuration Register*/
+
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteAcceConfiguration(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadAcceConfiguration(void);
 
 /*Accelerometer Configuration 2 Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteAcceConfiguration2(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadAcceConfiguration2(void);
 
 /*Low Power Accelerometer ODR Control Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteAcceLowPowerODR(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadAcceLowPowerODR(void);
 
 /*Wake On Motion Threshold Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteWakeOnMotion(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadWakeOnMotion(void);
 
 /*FIFO Enable Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteFIFOEnable(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadFIFOEnable(void);
 
 /*I2C Master Control Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CMasterControl(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2CMasterControl(void);
 
 /*I2C Slave 0 Control Registers*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave0Addr(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave0Addr(void);
+
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave0Reg(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave0Reg(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave0Ctrl(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave0Ctrl(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave0DO(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave0DO(void);
 
 /*I2C Slave 1 Control Registers*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave1Addr(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave1Addr(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave1Reg(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave1Reg(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave1Ctrl(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave1Ctrl(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave1DO(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave1DO(void);
 
 /*I2C Slave 2 Control Registers*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave2Addr(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave2Addr(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave2Reg(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave2Reg(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave2Ctrl(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave2Ctrl(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave2DO(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave2DO(void);
 
 /*I2C Slave 3 Control Registers*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave3Addr(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave3Addr(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave3Reg(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave3Reg(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave3Ctrl(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave3Ctrl(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave3DO(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave3DO(void);
 
 /*I2C Slave 4 Control Registers*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave4Addr(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave4Addr(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave4Reg(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave4Reg(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave4Ctrl(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave4Ctrl(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CSlave4DO(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave4DO(void);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadI2Slave4DI(void);
 
 /*I2C Master Status Register*/
 uint8_t MPU_ReadI2CMasterStatus(void);
 
 /*INT Pin / Bypass Enable Configuration Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteINTPinEnable(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadINTPinEnable(void);
 
 /*Interrupt Enable Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteINTEnable(uint8_t data);
+/***
+* @brief To read the configuration register
+*
+* @param void
+*
+* @return data - read data
+*/
 uint8_t MPU_ReadINTEnable(void);
 
 /*Interrupt Status Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 uint8_t MPU_ReadINTStatus(void);
 
 /*Accelerometer, Gyroscope and Temperature Measurements Registers*/
+/***
+* @brief To read the Accelerometer registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 void MPU_ReadAccelerometer(uint8_t *data);
+/***
+* @brief To read the Gyroscope registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 void MPU_ReadGyroscope(uint8_t *data);
+/***
+* @brief To read the Temperature registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 void MPU_ReadTemperature(uint8_t *data);
 
 /*External Sensor Data Registers*/
 void MPU_ReadExternalSensors(uint8_t *data, uint8_t size);
 
 /*I2C Master Delay Control Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteI2CMasterDelayCtl(uint8_t data);
+/***
+* @brief To read the Accelerometer registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 uint8_t MPU_ReadI2CMasterDelayCtl(void);
 
 /*Signal Path Reset Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteSignalPathReset(uint8_t data);
+/***
+* @brief To read the Accelerometer registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 uint8_t MPU_ReadSignalPathReset(void);
 
 /*Accelerometer Interrupt Control Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteAcceIntControl(uint8_t data);
+/***
+* @brief To read the Accelerometer registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 uint8_t MPU_ReadAcceIntControl(void);
 
 /*User Control Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteAcceIntControl(uint8_t data);
+/***
+* @brief To read the Accelerometer registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 uint8_t MPU_ReadAcceIntControl(void);
 
 /*Power Management 1 Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WritePowerManagement1(uint8_t data);
+/***
+* @brief To read the Accelerometer registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 uint8_t MPU_ReadPowerManagement1(void);
 
 /*Power Management 2 Register*/
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WritePowerManagement2(uint8_t data);
+/***
+* @brief To read the Accelerometer registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 uint8_t MPU_ReadPowerManagement2(void);
 
 /*FIFO Count Registers*/
+/***
+* @brief To read the Accelerometer registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 void MPU_ReadFIFOCount(uint8_t *data);
 
 /*FIFO Read Write Register*/
+/***
+* @brief To read the Accelerometer registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 uint8_t MPU_ReadFIFO(void);
+/***
+* @brief To set the configuration register
+*
+* @param data - value to write to register
+*
+* @return void
+*/
 void MPU_WriteFIFO(uint8_t data);
 
 /*Who Am I Register*/
+/***
+* @brief To read the Device Id registers
+*
+* @param data - pointer for read data
+*
+* @return void
+*/
 uint8_t MPU_WhoAmI(void);
 
 #endif /* MPU_H_ */

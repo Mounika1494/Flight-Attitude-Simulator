@@ -1,9 +1,15 @@
-/*
- * client.c
- *
- *  Created on: Dec 4, 2017
- *      Author: Mounika Reddy
- */
+/**************************************************************************************
+*@Filename:i2c.c
+*
+*@Description: Implementation of client thread for communication with BBG. On error push the
+*error to Logger Queue
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -20,6 +26,7 @@
 
 
 char buffer[100];
+//Mutex lock to disable preemption
 SemaphoreHandle_t client_mutex;
 
 // Write text over the Stellaris debug interface UART port
@@ -50,11 +57,12 @@ void clientTask(void *pvParameters)
                      UARTprintf("Error\n");
                  }
         }
+       //Send data to BBG
         UARTSendbytes(buffer,strlen(buffer) + 1);
     }
     else
         UARTprintf("Queue Rx ERROR\n");
-
+    //Heart beat
     if(xTaskNotify( monitorTaskHandle,0x02,eSetValueWithOverwrite) != pdPASS)
     {
         sprintf(p_message->data.loggerData,"%s\n","L TIVA Client: Task Notify failed\n");

@@ -19,11 +19,8 @@
 uint32_t g_ui32SysClock;
 SemaphoreHandle_t uartrxirq_mutex;
 SemaphoreHandle_t uarttx_mutex;
-//*****************************************************************************
-//
+
 // Send a string to the UART.
-//
-//*****************************************************************************
 void UARTSendbytes(char *pui8Buffer, uint32_t ui32Count)
 {
     //int j = 0;
@@ -44,10 +41,9 @@ void UARTSendbytes(char *pui8Buffer, uint32_t ui32Count)
         //SysCtlDelay(g_ui32SysClock / (1000 * 3));
     }
     xSemaphoreGive(uarttx_mutex);
-
-
 }
 
+//Initialise uart
 void uart_init()
 {
     //
@@ -57,7 +53,6 @@ void uart_init()
                                              SYSCTL_OSC_MAIN |
                                              SYSCTL_USE_PLL |
                                              SYSCTL_CFG_VCO_480), 120000000);
-    //InitConsole();
     //
     // Enable the GPIO port that is used for the on-board LED.
     //
