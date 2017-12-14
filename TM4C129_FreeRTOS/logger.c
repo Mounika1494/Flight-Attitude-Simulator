@@ -25,7 +25,6 @@ void loggerTask(void *pvParameters)
     if(logger_mutex == NULL)
     {
         sprintf(p_message->data.loggerData,"%s\n","L TIVA Logger:Mutex creation failed\n");
-        //strcpy(p_message->data.loggerData,"FATAL\n");
         if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
                   UARTprintf("Error\n");
               }
@@ -39,7 +38,6 @@ while(1)
         if(xSemaphoreTake(logger_mutex,portMAX_DELAY) != pdTRUE)
              {
                 sprintf(p_message->data.loggerData,"%s\n","L TIVA Logger: Semaphore take failed\n");
-                //strcpy(p_message->data.loggerData,"FATAL\n");
                 if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
                           UARTprintf("Error\n");
                       }
@@ -48,7 +46,6 @@ while(1)
         if(xTaskNotify(monitorTaskHandle,0x01,eSetValueWithOverwrite) != pdPASS)
         {
             sprintf(p_message->data.loggerData,"%s\n","L TIVA Logger: Task notify failed\n");
-             //strcpy(p_message->data.loggerData,"FATAL\n");
              if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
                        UARTprintf("Error\n");
                    }

@@ -6,7 +6,6 @@
  */
 #include "mpu9250.h"
 #include "console.h"
-#include "alarm.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -67,17 +66,10 @@ void IMUTask(void *pvParameters)
      float Pitch = 0;
      float Roll = 0;
      float Yaw = 0;
-   //  float Acceleration_Pitch = 0;
-    // float Acceleration_Roll = 0;
-     //float Acceleration_Yaw = 0; /*it will not work magnetometer necessary!*/
-
-    // char Pitch_String[16];
-     //char Roll_String[16];
 
      /*Sample rate = System frequency / desired sample frequency*/
      uint32_t Sample_Rate = MAP_SysCtlClockGet()/100;
      sprintf(p_message->data.loggerData,"%s\n","L TIVA DEBUG INFO:IMU initialised");
-     //strcpy(p_message->data.loggerData,"FATAL\n");
      if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
                UARTprintf("Error\n");
            }
@@ -98,7 +90,6 @@ void IMUTask(void *pvParameters)
          /*Readings minus bias*/
          Acceleration[0] -= acceleration_bias[0];
          Acceleration[1] -= acceleration_bias[1];
-         //Acceleration[2] -= acceleration_bias[2];
 
          Degrees[0] -= degree_bias[0];
          Degrees[1] -= degree_bias[1];
@@ -114,24 +105,12 @@ void IMUTask(void *pvParameters)
          message.data.IMUdata.roll_dot = Degrees[1];
          message.data.IMUdata.yaw_dot = Degrees[2];
 
-         //Acceleration_Pitch = atan2f(Acceleration[1], sqrtf(Acceleration[0] * Acceleration[0] + Acceleration[2] * Acceleration[2]) ) * 180 / M_PI;
-         //Acceleration_Roll = atan2f(Acceleration[0], sqrt(Acceleration[1] * Acceleration[1] + Acceleration[2] * Acceleration[2]) ) * 180 / M_PI;
-         //Acceleration_Yaw = atan2f(Acceleration[2], sqrt(Acceleration[0] * Acceleration[0] + Acceleration[1] * Acceleration[1]) ) * 180 / M_PI;
-
-         //Pitch = 0.94 * Pitch + 0.06 * Acceleration_Pitch;
-         //Roll = 0.94 * Roll + 0.06 * Acceleration_Roll;
-         //Yaw = 0.98 * Yaw + 0.02 * Acceleration_Yaw;
-
-         //sprintf(Pitch_String, "%f", Pitch);
-         //sprintf(Roll_String, "%f", Roll);
-
-         //UARTprintf("%s", Pitch_String);
-         //UARTprintf(" %s\n", Roll_String);
 
          if(xQueueSend( Socket_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
                   UARTprintf("Error\n");
               }
          xSemaphoreGive(IMU_mutex);
+
          /*delay 10 ms*/
          if(xTaskNotify( monitorTaskHandle,0x03,eSetValueWithOverwrite) != pdPASS)
          {

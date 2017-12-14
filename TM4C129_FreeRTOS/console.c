@@ -14,7 +14,6 @@ void InitConsole(void){
     GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
 
     UARTStdioConfig(0, 115200, 16000000);
-
 }
 
 
