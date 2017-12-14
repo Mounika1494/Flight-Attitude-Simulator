@@ -19,7 +19,7 @@
 #include "console.h"
 #include <string.h>
 
-
+//task which recieves notifications from all threads
 void monitorTask(void *pvParameters)
 {
     uint32_t ulNotifiedValue;
