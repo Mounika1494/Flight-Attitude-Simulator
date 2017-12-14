@@ -10,6 +10,7 @@
 
 #include "queue.h"
 void sequencerTask(void *pvParameters);
+void monitorTask(void *pvParameters);
 void IMUTask(void *pvParameters);
 void EEPROMTask(void *pvParameters);
 void clientTask(void *pvParameters);
@@ -57,4 +58,22 @@ QueueHandle_t Socket_Queue;
 QueueHandle_t Logger_Queue;
 QueueHandle_t EEPROM_Queue;
 
+extern TaskHandle_t EEPROMTaskHandle;
+extern TaskHandle_t IMUTaskHandle;
+extern TaskHandle_t sequencerTaskHandle;
+extern TaskHandle_t loggerTaskHandle;
+extern TaskHandle_t clientTaskHandle;
+extern TaskHandle_t monitorTaskHandle;
+
+#define E2PROM_TEST_ADRES 0x0000
+struct EEPROM
+{
+    uint8_t value1;
+    uint8_t value2;
+    uint16_t value3;
+    char value4[12];
+};
+
+uint8_t flag;
+volatile int system_status[3];
 #endif /* SYSTEM_H_ */

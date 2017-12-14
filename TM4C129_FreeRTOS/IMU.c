@@ -26,33 +26,25 @@ void IMUTask(void *pvParameters)
     message_t message;
     message_t *p_message;
     p_message = &message;
-    /*static int i = 0;
-    while(1)
-    {
-     message.data.x_ddot = i;
-     message.data.y_ddot = i;
-     message.data.z_ddot = i;
-     message.status = BAD;
-     i++;
-     if(xQueueSend( Socket_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
-         UARTprintf("Error\n");
+    I2C_Init();
+    IMU_mutex = xSemaphoreCreateMutex();
+    if(IMU_mutex == NULL)
+     {
+         sprintf(p_message->data.loggerData,"%s\n","L TIVA IMU: Mutex creation failed\n");
+           if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                     UARTprintf("Error\n");
+                 }
      }
-    }*/
-     I2C_Init();
-     IMU_mutex = xSemaphoreCreateMutex();
      uint8_t id;
 
      /*Checking connection here*/
      id = MPU_WhoAmI();
-    /* if(id == 0x71){
-         /*We are connected set armed alarm*/
-         //LED_ArmedAlarm();
-     //}else{
-         /*connection failed somehow, set failed alarm. Check connections*/
-     //    UARTprintf("Connection failed id found: %x", id);
-       //  LED_FailedAlarm();
-        // while(1);
-     //}*/
+     if(id == 0x71){
+         sprintf(p_message->data.loggerData,"%s\n","L TIVA IMU: I2C initialised\n");
+             if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                       UARTprintf("Error\n");
+                   }
+     }
 
      /*MPU9250 Simple Initialization*/
      MPU_WritePowerManagement1(CLKSEL_1);
@@ -75,12 +67,12 @@ void IMUTask(void *pvParameters)
      float Pitch = 0;
      float Roll = 0;
      float Yaw = 0;
-     float Acceleration_Pitch = 0;
-     float Acceleration_Roll = 0;
+   //  float Acceleration_Pitch = 0;
+    // float Acceleration_Roll = 0;
      //float Acceleration_Yaw = 0; /*it will not work magnetometer necessary!*/
 
-     char Pitch_String[16];
-     char Roll_String[16];
+    // char Pitch_String[16];
+     //char Roll_String[16];
 
      /*Sample rate = System frequency / desired sample frequency*/
      uint32_t Sample_Rate = MAP_SysCtlClockGet()/100;
@@ -94,7 +86,10 @@ void IMUTask(void *pvParameters)
      {
          if(xSemaphoreTake(IMU_mutex,portMAX_DELAY) != pdTRUE)
            {
-               //error
+             sprintf(p_message->data.loggerData,"%s\n","L TIVA IMU: Taking Mutex  failed\n");
+               if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                         UARTprintf("Error\n");
+                     }
            }
          /*Get data from Gyroscope and Accelerometer*/
          MPU9250_Motion(Acceleration, Degrees);
@@ -137,10 +132,15 @@ void IMUTask(void *pvParameters)
                   UARTprintf("Error\n");
               }
          xSemaphoreGive(IMU_mutex);
-         int i;
          /*delay 10 ms*/
+         if(xTaskNotify( monitorTaskHandle,0x03,eSetValueWithOverwrite) != pdPASS)
+         {
+            sprintf(p_message->data.loggerData,"%s\n","L TIVA IMU: Task notify failed\n");
+            if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                     UARTprintf("Error\n");
+                 }
+         }
          MAP_SysCtlDelay(Sample_Rate);
-         //for(i =0;i<10000;i++);
      }
 }
 

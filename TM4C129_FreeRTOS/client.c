@@ -31,9 +31,12 @@ void clientTask(void *pvParameters)
     //InitConsole();
     //uart_init();
     client_mutex = xSemaphoreCreateMutex();
-    if(client_mutex != NULL)
+    if(client_mutex == NULL)
     {
-
+        sprintf(p_message->data.loggerData,"%s\n","L TIVA Client: Mutex creation failed\n");
+         if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                   UARTprintf("Error\n");
+               }
     }
     //ROM_UARTCharPutNonBlocking(UART3_BASE, 'a');
    // for(j =0;j<10000;j++);
@@ -52,20 +55,30 @@ void clientTask(void *pvParameters)
         //UARTprintf("x:%d,y:%d,z:%d,status:%d\n",(*p_message).data.x_ddot,p_message->data.y_ddot,p_message->data.z_ddot,p_message->status);
         sprintf(buffer,"D %f %f %f %f %f %f\n ",p_message->data.IMUdata.x_ddot,p_message->data.IMUdata.y_ddot,p_message->data.IMUdata.z_ddot,
                 p_message->data.IMUdata.pitch_dot,p_message->data.IMUdata.roll_dot,p_message->data.IMUdata.yaw_dot);
-          UARTprintf("%s",buffer);
+        UARTprintf("%s",buffer);
  //       ROM_UARTCharPutNonBlocking(UART3_BASE, 'd');
        // UARTSendbytes("hey\n",4);
        if(xSemaphoreTake(client_mutex,portMAX_DELAY) != pdTRUE)
         {
-            //error
+           sprintf(p_message->data.loggerData,"%s\n","L TIVA Client: Semaphore take failed\n");
+           if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                     UARTprintf("Error\n");
+                 }
         }
         UARTSendbytes(buffer,strlen(buffer) + 1);
     }
     else
         UARTprintf("Queue Rx ERROR\n");
-        xSemaphoreGive(client_mutex);
-    }
 
+    if(xTaskNotify( monitorTaskHandle,0x02,eSetValueWithOverwrite) != pdPASS)
+    {
+        sprintf(p_message->data.loggerData,"%s\n","L TIVA Client: Task Notify failed\n");
+         if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                   UARTprintf("Error\n");
+               }
+    }
+    xSemaphoreGive(client_mutex);
+    }
 }
 
 

@@ -24,16 +24,12 @@
 #include "system.h"
 #include <string.h>
 
-#define E2PROM_TEST_ADRES 0x0000
-struct EEPROM
-{
-    uint8_t value1;
-    uint8_t value2;
-    uint16_t value3;
-    uint8_t value4[12];
-};
+
 void EEPROMTask(void *pvParameters)
 {
+    message_t message;
+    message_t *p_message;
+    p_message = &message;
     //uint32_t e2size,e2block;
     SysCtlPeripheralEnable(SYSCTL_PERIPH_EEPROM0);
     struct EEPROM e2prom_write_value;
@@ -44,10 +40,10 @@ void EEPROMTask(void *pvParameters)
 
    // e2block = EEPROMBlockCountGet(); // Get EEPROM Block Count
     //UARTprintf("EEPROM Blok Count: %d\n", e2block);
- //   strcpy(p_message->data.loggerData,"DEBUG INFO: EEPROM initialised");
- //   if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
- //             UARTprintf("Error\n");
- //         }
+    strcpy(p_message->data.loggerData,"L TIVA DEBUG INFO: EEPROM initialised\n");
+    if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+              UARTprintf("Error\n");
+          }
     char buffer[10];
     char recv_buffer[10];
     while(1)
