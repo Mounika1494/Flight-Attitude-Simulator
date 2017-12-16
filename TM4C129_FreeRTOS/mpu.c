@@ -1,3 +1,14 @@
+/**************************************************************************************
+*@Filename:mpu.c
+*
+*@Description: Implementation of API to configure registers and read data from registers
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "mpu.h"
 #include "mpu9250_rm.h"
 

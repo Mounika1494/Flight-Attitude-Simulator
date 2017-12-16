@@ -1,9 +1,14 @@
-/*
- * uart.c
- *
- *  Created on: Dec 10, 2017
- *      Author: Mounika Reddy
- */
+/**************************************************************************************
+*@Filename:uart.c
+*
+*@Description: Implementation of uart driver communication with BBG using UART3
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -14,21 +19,23 @@
 #include "console.h"
 #include "uart.h"
 #include "system.h"
+#include <string.h>
 
 uint32_t g_ui32SysClock;
 SemaphoreHandle_t uartrxirq_mutex;
-//*****************************************************************************
-//
+SemaphoreHandle_t uarttx_mutex;
+
 // Send a string to the UART.
-//
-//*****************************************************************************
-void
-UARTSendbytes(char *pui8Buffer, uint32_t ui32Count)
+void UARTSendbytes(char *pui8Buffer, uint32_t ui32Count)
 {
-    int j = 0;
+    //int j = 0;
     //
     // Loop while there are more characters to send.
     //
+    if(xSemaphoreTake(uarttx_mutex,portMAX_DELAY) != pdTRUE)
+             {
+                 //error
+             }
     while(ui32Count--)
     {
         //
@@ -38,8 +45,10 @@ UARTSendbytes(char *pui8Buffer, uint32_t ui32Count)
         //for(j = 0;j<1000;j++);
         //SysCtlDelay(g_ui32SysClock / (1000 * 3));
     }
+    xSemaphoreGive(uarttx_mutex);
 }
 
+//Initialise uart
 void uart_init()
 {
     //
@@ -49,7 +58,6 @@ void uart_init()
                                              SYSCTL_OSC_MAIN |
                                              SYSCTL_USE_PLL |
                                              SYSCTL_CFG_VCO_480), 120000000);
-    //InitConsole();
     //
     // Enable the GPIO port that is used for the on-board LED.
     //
@@ -93,6 +101,12 @@ void uart_init()
     {
 
     }
+    uarttx_mutex = xSemaphoreCreateMutex();
+    if(uarttx_mutex != NULL)
+    {
+
+    }
+
     //
     // Prompt for text to be entered.
     //
@@ -108,6 +122,8 @@ void uart_init()
 void
 UARTIntHandler(void)
 {
+    BaseType_t xHigherPriorityTaskWoken;
+    xHigherPriorityTaskWoken = pdFALSE;
     char rx_str[10];
     int i = 0;
     if(xSemaphoreTake(uartrxirq_mutex,portMAX_DELAY) != pdTRUE)
@@ -163,11 +179,23 @@ UARTIntHandler(void)
         GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0);
     }
     UARTprintf("Recieved %s\n",rx_str);
-    if(xQueueSend( EEPROM_Queue, ( void * ) rx_str, ( TickType_t ) 0 ) != pdTRUE){
-                      UARTprintf("Error\n");
-                  }
-    xSemaphoreGive(uartrxirq_mutex);
+    if(rx_str[0] == 'F')
+    {
+    xTaskNotifyFromISR( monitorTaskHandle,
+                            0x04,
+                            eSetValueWithoutOverwrite,
+                            &xHigherPriorityTaskWoken );
+    }
+    if(rx_str[0] == 'N')
+    {
+        xTaskNotifyFromISR( monitorTaskHandle,
+                              0x05,
+                              eSetValueWithoutOverwrite,
+                              &xHigherPriorityTaskWoken );
 
+    }
+    portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
+    xSemaphoreGive(uartrxirq_mutex);
 }
 
 

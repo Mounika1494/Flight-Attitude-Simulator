@@ -1,10 +1,15 @@
-/*
- * eeprom.c
- *
- *  Created on: Dec 10, 2017
- *      Author: Mounika Reddy
- */
-
+/**************************************************************************************
+*@Filename:eeprom_thread.c
+*
+*@Description: Implementation of EEPROM thread to log data. Any error
+*              data is pushed to logger queue
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include <stdint.h>
 #include <stdbool.h>
 #include "inc/hw_memmap.h"
@@ -24,32 +29,27 @@
 #include "system.h"
 #include <string.h>
 
-#define E2PROM_TEST_ADRES 0x0000
-struct EEPROM
-{
-    uint8_t value1;
-    uint8_t value2;
-    uint16_t value3;
-    uint8_t value4[12];
-};
+//Initialise EEPROM for writing data and reading to EEPROM
 void EEPROMTask(void *pvParameters)
 {
-    //uint32_t e2size,e2block;
+    message_t message;
+    message_t *p_message;
+    p_message = &message;
+    uint32_t e2size,e2block;
     SysCtlPeripheralEnable(SYSCTL_PERIPH_EEPROM0);
     struct EEPROM e2prom_write_value;
     struct EEPROM e2prom_read_value;
     EEPROMInit();
-    //e2size = EEPROMSizeGet(); // Get EEPROM Size
-    //UARTprintf("EEPROM Size %d bytes\n", e2size);
+    e2size = EEPROMSizeGet(); // Get EEPROM Size
+    UARTprintf("EEPROM Size %d bytes\n", e2size);
 
-   // e2block = EEPROMBlockCountGet(); // Get EEPROM Block Count
-    //UARTprintf("EEPROM Blok Count: %d\n", e2block);
- //   strcpy(p_message->data.loggerData,"DEBUG INFO: EEPROM initialised");
- //   if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
- //             UARTprintf("Error\n");
- //         }
+    e2block = EEPROMBlockCountGet(); // Get EEPROM Block Count
+    UARTprintf("EEPROM Blok Count: %d\n", e2block);
+    strcpy(p_message->data.loggerData,"L TIVA DEBUG INFO: EEPROM initialised\n");
+    if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+              UARTprintf("Error\n");
+          }
     char buffer[10];
-    char recv_buffer[10];
     while(1)
     {
         if(xQueueReceive(EEPROM_Queue, buffer, portMAX_DELAY ) == pdTRUE)
@@ -57,7 +57,7 @@ void EEPROMTask(void *pvParameters)
                 UARTprintf("Recieved EEPROM %s\n",buffer);
                 strcpy(e2prom_write_value.value4,buffer);
                 EEPROMProgram((uint32_t *)&e2prom_write_value, E2PROM_TEST_ADRES, sizeof(e2prom_write_value)); //Write struct to EEPROM start from 0x0000
-                //EEPROMRead((uint32_t *)&e2prom_read_value, E2PROM_TEST_ADRES, sizeof(e2prom_read_value));
+                EEPROMRead((uint32_t *)&e2prom_read_value, E2PROM_TEST_ADRES, sizeof(e2prom_read_value));
                 UARTprintf("Read from EEPROM %s\n",e2prom_read_value.value4);
                 }
 

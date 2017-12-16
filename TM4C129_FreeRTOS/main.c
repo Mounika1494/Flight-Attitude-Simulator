@@ -1,6 +1,17 @@
+/**************************************************************************************
+*@Filename:main.c
+*
+*@Description: Thread which creates all the queues, threads, starts scheduler
+*               any error  will be pushed to logger queue
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "mpu9250.h"
 #include "console.h"
-#include "alarm.h"
 
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
@@ -17,53 +28,106 @@
 #include "driverlib/rom.h"
 #include "driverlib/rom_map.h"
 
+#include "driverlib/eeprom.h"
+
+
 #include "uart.h"
 
-#define M_PI    3.14159265359
-//uint32_t g_ui32SysClock;
 
+//Task handles for all threads
+TaskHandle_t EEPROMTaskHandle;
+TaskHandle_t IMUTaskHandle;
+TaskHandle_t sequencerTaskHandle;
+TaskHandle_t loggerTaskHandle;
+TaskHandle_t clientTaskHandle;
+TaskHandle_t monitorTaskHandle;
 
 
 int main(void)
 {
-    //SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
+    message_t message;
+    message_t *p_message;
+    p_message = &message;
+    BaseType_t xReturned;
     MAP_SysCtlClockFreqSet((SYSCTL_XTAL_25MHZ |
-                                                 SYSCTL_OSC_MAIN |
-                                                 SYSCTL_USE_PLL |
-                                                 SYSCTL_CFG_VCO_480), 120000000);
+                            SYSCTL_OSC_MAIN |
+                            SYSCTL_USE_PLL |
+                            SYSCTL_CFG_VCO_480), 120000000);
+    //Array which initialises system status to default values
+    system_status[0] = -1;
+    system_status[1] = -1;
+    system_status[2] = -1;
+
+    //Initialise the console for UARTprintf
     InitConsole();
+    //Initialise the uart for communication with BBG
     uart_init();
+
+    //Create queues and on any error error flag will be set to 1
     Socket_Queue = xQueueCreate(1000,sizeof(message_t *));
+    if(Socket_Queue == NULL)
+        flag = 1;
     Logger_Queue = xQueueCreate(1000,sizeof(message_t *));
+    if(Logger_Queue == NULL)
+        flag = 1;
     EEPROM_Queue = xQueueCreate(1000,sizeof(EEPROM_data));
+    if(EEPROM_Queue == NULL)
+        flag = 1;
 
-    xTaskCreate(loggerTask, (const portCHAR *)"Logger",
-                    configMINIMAL_STACK_SIZE, NULL, 1, NULL);
-    xTaskCreate(EEPROMTask, (const portCHAR *)"EEPROM",
-                    configMINIMAL_STACK_SIZE, NULL, 1, NULL);
-    xTaskCreate(clientTask, (const portCHAR *)"Serial",
-                    configMINIMAL_STACK_SIZE, NULL, 1, NULL);
-    xTaskCreate(IMUTask, (const portCHAR *)"IMU",
-                    configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+    //Create tasks and on any error error flag will be set to 1
+    xReturned = xTaskCreate(monitorTask, (const portCHAR *)"monitor",
+                    configMINIMAL_STACK_SIZE, NULL, 1, &monitorTaskHandle);
+    if( xReturned == pdFAIL )
+    {
+        flag = 1;
+    }
 
+    xReturned = xTaskCreate(sequencerTask, (const portCHAR *)"timer",
+                    configMINIMAL_STACK_SIZE, NULL, 1, &sequencerTaskHandle);
+    if( xReturned == pdFAIL )
+    {
+        flag = 1;
+    }
+
+    xReturned = xTaskCreate(loggerTask, (const portCHAR *)"Logger",
+                    configMINIMAL_STACK_SIZE, NULL, 1, &loggerTaskHandle);
+    if( xReturned == pdFAIL )
+    {
+        flag = 1;
+    }
+    xReturned = xTaskCreate(EEPROMTask, (const portCHAR *)"EEPROM",
+                    configMINIMAL_STACK_SIZE, NULL, 1, &EEPROMTaskHandle);
+    if( xReturned == pdFAIL )
+    {
+
+        flag = 1;
+    }
+    xReturned = xTaskCreate(clientTask, (const portCHAR *)"Serial",
+                    configMINIMAL_STACK_SIZE, NULL, 1, &clientTaskHandle);
+    if( xReturned == pdFAIL )
+    {
+
+        flag = 1;
+    }
+    xReturned = xTaskCreate(IMUTask, (const portCHAR *)"IMU",
+                    configMINIMAL_STACK_SIZE, NULL, 1, &IMUTaskHandle);
+    if( xReturned == pdFAIL )
+    {
+      flag = 1;
+    }
+
+    if(flag == 1)
+    {
+        sprintf(p_message->data.loggerData,"%s\n","L TIVA DEBUG ERROR:Task creation failed\n");
+         //strcpy(p_message->data.loggerData,"FATAL\n");
+         if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                   UARTprintf("Error\n");
+               }
+
+    }
+    //Start the scheduler
     vTaskStartScheduler();
     return 0;
-
-//    //
-//    // Read the next character from the UART and write it back to the UART.
-//    //
-//    ROM_UARTCharPutNonBlocking(UART3_BASE,'w');
-//    ROM_UARTCharPut(UART3_BASE,'a');
-//    ROM_UARTCharPutNonBlocking(UART3_BASE,'o');
-//    ROM_UARTCharPutNonBlocking(UART3_BASE,'r');
-
-    //
-    // Loop forever echoing data through the UART.
-    //
- //   while(1)
-   // {
-
-    //}
 }
 
 

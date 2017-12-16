@@ -1,9 +1,15 @@
-/*
- * client.c
- *
- *  Created on: Dec 4, 2017
- *      Author: Mounika Reddy
- */
+/**************************************************************************************
+*@Filename:i2c.c
+*
+*@Description: Implementation of client thread for communication with BBG. On error push the
+*error to Logger Queue
+*
+*@Author:Mounika Reddy Edula
+*        JayaKrishnan H.J
+*@Date:12/11/2017
+*@compiler:gcc
+*@debugger:gdb
+**************************************************************************************/
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -20,6 +26,7 @@
 
 
 char buffer[100];
+//Mutex lock to disable preemption
 SemaphoreHandle_t client_mutex;
 
 // Write text over the Stellaris debug interface UART port
@@ -28,44 +35,43 @@ void clientTask(void *pvParameters)
     message_t message;
     message_t *p_message;
     p_message = &message;
-    //InitConsole();
-    //uart_init();
     client_mutex = xSemaphoreCreateMutex();
-    if(client_mutex != NULL)
+    if(client_mutex == NULL)
     {
-
+        sprintf(p_message->data.loggerData,"%s\n","L TIVA Client: Mutex creation failed\n");
+         if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                   UARTprintf("Error\n");
+               }
     }
-    //ROM_UARTCharPutNonBlocking(UART3_BASE, 'a');
-   // for(j =0;j<10000;j++);
-    //
-    // Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks.
-    //
-    //SysCtlDelay(g_ui32SysClock / (1000 * 3));
-//    I2C_Init();
-//    ROM_UARTCharPutNonBlocking(UART3_BASE, 'b');
     while(1)
     {
     if(xQueueReceive(Socket_Queue,  &p_message, (TickType_t)10000 ) == pdTRUE)
     {
-        //uart_init();
-//        ROM_UARTCharPutNonBlocking(UART3_BASE, 'c');
-        //UARTprintf("x:%d,y:%d,z:%d,status:%d\n",(*p_message).data.x_ddot,p_message->data.y_ddot,p_message->data.z_ddot,p_message->status);
         sprintf(buffer,"D %f %f %f %f %f %f\n ",p_message->data.IMUdata.x_ddot,p_message->data.IMUdata.y_ddot,p_message->data.IMUdata.z_ddot,
                 p_message->data.IMUdata.pitch_dot,p_message->data.IMUdata.roll_dot,p_message->data.IMUdata.yaw_dot);
-          UARTprintf("%s",buffer);
- //       ROM_UARTCharPutNonBlocking(UART3_BASE, 'd');
-       // UARTSendbytes("hey\n",4);
+        UARTprintf("%s",buffer);
        if(xSemaphoreTake(client_mutex,portMAX_DELAY) != pdTRUE)
         {
-            //error
+           sprintf(p_message->data.loggerData,"%s\n","L TIVA Client: Semaphore take failed\n");
+           if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                     UARTprintf("Error\n");
+                 }
         }
+       //Send data to BBG
         UARTSendbytes(buffer,strlen(buffer) + 1);
     }
     else
         UARTprintf("Queue Rx ERROR\n");
-        xSemaphoreGive(client_mutex);
+    //Heart beat
+    if(xTaskNotify( monitorTaskHandle,0x02,eSetValueWithOverwrite) != pdPASS)
+    {
+        sprintf(p_message->data.loggerData,"%s\n","L TIVA Client: Task Notify failed\n");
+         if(xQueueSend( Logger_Queue, ( void * ) &p_message, ( TickType_t ) 0 ) != pdTRUE){
+                   UARTprintf("Error\n");
+               }
     }
-
+    xSemaphoreGive(client_mutex);
+    }
 }
 
 
