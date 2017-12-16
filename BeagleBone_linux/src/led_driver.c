@@ -1,10 +1,13 @@
 #include "system.h"
+#include "heartbeat.h"
 
 static int8_t LED_init(){
        FILE *fp;
+       int nbytes;
+       message_t sensor_recv;
        
        if((fp = fopen("/sys/class/gpio/gpio66/direction", "w+"))!=NULL){
-               fwrite("out", 1, 1 , fp);
+               fwrite("out", 1, 4 , fp);
                fclose(fp);
        }else{
                perror("File Open Error:");
@@ -13,7 +16,7 @@ static int8_t LED_init(){
        
        
        if((fp = fopen("/sys/class/gpio/gpio67/direction", "w+"))!=NULL){
-               fwrite("out", 1, 1 , fp);
+               fwrite("out", 1, 4 , fp);
                fclose(fp);
        }else{
                perror("File Open Error:");
@@ -23,7 +26,7 @@ static int8_t LED_init(){
        
        
        if((fp = fopen("/sys/class/gpio/gpio68/direction", "w+"))!=NULL){
-               fwrite("out", 1, 1 , fp);
+               fwrite("out", 1, 4 , fp);
                fclose(fp);
        }else{
                perror("File Open Error:");
@@ -33,11 +36,22 @@ static int8_t LED_init(){
        
        
        if((fp = fopen("/sys/class/gpio/gpio69/direction", "w+"))!=NULL){
-               fwrite("out", 1, 1 , fp);
+               fwrite("out", 1, 4 , fp);
                fclose(fp);
        }else{
                perror("File Open Error:");
                return -1;
+       }
+       
+       sprintf(sensor_recv.data.logger_data,"%s"," DEUBG INFO: LEDs initialized");
+       
+       if((nbytes = mq_send(log_mq, (char *)&sensor_recv, sizeof(sensor_recv), 30)) == -1)
+       {
+              perror("mq_send");
+       }
+       else
+       {
+              //printf("Core Dumped\n", nbytes);
        }
        
        
@@ -113,23 +127,23 @@ void *ledThread(void *threadp){
        
        while(1){
               
-              printf("\n waiting on led_mq \n");
+              // printf("\n waiting on led_mq \n");
               if((nbytes = mq_receive(led_mq,(char*)&sensor_recv, MAX_MSG_SIZE, &prio)) == ERROR)
               {
                      perror("mq_receive");
               }
               else{
-                     printf("\n Received LED_MQ state %d\n", sensor_recv.data.LED.LED1);
+                     // printf("\n Received LED_MQ state %d\n", sensor_recv.data.LED.LED1);
                      
                      if(sensor_recv.data.LED.LED1 == GLOW){
                             
-                            printf("LED1 ON\n");
+                            // printf("LED1 ON\n");
                             set_LED1("1");
                             set_LED2("0");
                             // set_LED3("0");
                             // set_LED4("0");
                      }else if(sensor_recv.data.LED.LED2 == GLOW){
-                            printf("LED2 ON\n");
+                            // printf("LED2 ON\n");
                             set_LED1("0");
                             set_LED2("1");
                             // set_LED3("0");
@@ -137,13 +151,13 @@ void *ledThread(void *threadp){
                      }
                      
                      if(sensor_recv.data.LED.LED3 == GLOW){
-                            printf("LED3 ON\n");
+                            // printf("LED3 ON\n");
                             // set_LED1("0");
                             // set_LED2("0");
                             set_LED3("1");
                             set_LED4("0");
                      }else if(sensor_recv.data.LED.LED4 == GLOW){
-                            printf("LED4 ON\n");
+                            // printf("LED4 ON\n");
                             // set_LED1("0");
                             // set_LED2("0");
                             set_LED3("0");
@@ -152,6 +166,14 @@ void *ledThread(void *threadp){
                      
                      
               }
+              
+              
+              pthread_mutex_lock(&ledMutex);
+              heartBeatIndex[LED]++;
+              pthread_cond_signal(&ledCond); // Signal as now globalvar is 1
+              pthread_mutex_unlock(&ledMutex);
+              
+              
               
        }
        

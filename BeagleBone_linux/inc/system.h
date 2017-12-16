@@ -1,3 +1,24 @@
+/**********************************************************************************************************
+* Copyright (C) 2017 by JayaKrishnan HJ
+*
+*Redistribution,modification or use of this software in source or binary fors is permitted as long 
+*as the files maintain this copyright. JayaKrishnan HJ is not liable for any misuse of this material
+*
+*********************************************************************************************************/
+/**
+* @file system.h
+* @brief all the structures used by system
+*
+*This header file provides thread declrations and messaging struccture
+*
+* @author Mounika Reddy Edula
+* @       JayaKrishnan HJ
+* @date December 11 2017
+* @version 1.0
+*
+*/
+
+
 #ifndef _SYSTEM_H
 #define _SYSTEM_H_
 
@@ -17,13 +38,14 @@
 #include <math.h>
 
 #define MAX_SIZE 250
-#define NUM_THREADS 4
+#define NUM_THREADS 5
 #define MAX_MSG_SIZE 1024 //maximum messagequeue width
 #define ERROR -1
 
 #define SNDRCV_MQ3 "/send_receive_mq3" 
 #define SNDRCV_MQ4 "/send_receive_mq4"
 #define SNDRCV_MQ5 "/send_receive_mq5"
+#define SNDRCV_MQ6 "/send_receive_mq6"
 
 //thread creation
 typedef struct
@@ -31,6 +53,7 @@ typedef struct
   int threadIdx;
 } threadParams_t;
 
+pthread_t threads[NUM_THREADS];
 threadParams_t threadParams[NUM_THREADS];
 
 // message queue attributes
@@ -38,8 +61,9 @@ struct mq_attr mq_attr;
 
 //messgage queue for every thread
 mqd_t proc_mq, log_mq;
-mqd_t led_mq;
+mqd_t led_mq, send_mq;
 
+char *logger_file;
 
 typedef struct{
        uint8_t LED1;
@@ -95,6 +119,7 @@ void *ledThread(void *threadp);
 void *processorThread(void *threadp);
 void *uartThread(void *threadp);
 void *processThread(void *threadp);
+void *heartBeatThread(void *threadp);
 
 
 #endif

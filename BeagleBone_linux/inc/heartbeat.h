@@ -6,10 +6,10 @@
 *
 *********************************************************************************************************/
 /**
-* @file transporter.h
+* @file heartbeat.h
 * @brief all the structures used by system
 *
-*This header file contains the interrupt handler and the enums for log and data
+*This header file provides the mutex and conditional variable declarations for monitoring the tasks
 *
 * @author Mounika Reddy Edula
 * @       JayaKrishnan HJ
@@ -19,14 +19,42 @@
 */
 
 
-#ifndef _TRANSPORTER_H_
-#define _TRANSPORTER_H_
+#ifndef _HEARTBEAT_H_
+#define _HEARTBEAT_H_
+
+#define NUM_OF_TASKS 4
+
+
+int heartBeatIndex[NUM_OF_TASKS];
 
 enum{
-       DATA = 1,
-       LOG
+       TRANSPORT =0,
+       PROCESS,
+       LED,
+       LOGGER
 };
 
-void int_handler();
+
+
+//mutex
+pthread_mutex_t transportMutex;
+//condition var
+pthread_cond_t transportCond;
+
+//mutex
+pthread_mutex_t processMutex;
+//condition var
+pthread_cond_t processCond;
+
+//mutex
+pthread_mutex_t loggerMutex;
+//condition var
+pthread_cond_t loggerCond;
+
+//mutex
+pthread_mutex_t ledMutex;
+//condition var
+pthread_cond_t ledCond;
+
 
 #endif

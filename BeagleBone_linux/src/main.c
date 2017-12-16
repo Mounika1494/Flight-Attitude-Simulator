@@ -4,11 +4,20 @@
 
 
 
-int main(){
+int main(int argc, char *argv[]){
     
     int8_t error_flag = 0;
     int8_t errorno = 0;
-    pthread_t threads[NUM_THREADS];
+    int8_t nbytes;
+    message_t sensor_recv;
+    
+    if (argc < 2)
+	{
+		printf("USAGE: <logger file>\n");
+		exit(1);
+	}
+	
+	logger_file = argv[1];
     
     /* setup common message q attributes */
     mq_attr.mq_maxmsg = 20;
@@ -45,7 +54,7 @@ int main(){
                 		);
 		if(errno){
 		    error_flag = 1;
-		}
+		 }
 
     errno = pthread_create(&threads[1],   // pointer to thread descriptor
                 		 NULL,     // use default attributes
@@ -73,46 +82,41 @@ int main(){
 		if(errno){
 		    error_flag = 1;
 		}
-    printf("exiting... %d \n", error_flag);
+		
+		  errno = pthread_create(&threads[4],   // pointer to thread descriptor
+                		 NULL,     // use default attributes
+                		 heartBeatThread, // thread function entry point
+                		 (void *)&(threadParams[4]) // parameters to pass in		//Cant pass nothing so just pass a number
+                		);
+		if(errno){
+		    error_flag = 1;
+		}
+    
+    
+    if(error_flag == 1)
+    {
+        error_flag = 0;
+        sprintf(sensor_recv.data.logger_data,"%s"," DEBUG ERROR:pthread/MQ create error");
+        sensor_recv.status = BAD;
+        
+        if((nbytes = mq_send(log_mq, (char *)&sensor_recv, sizeof(sensor_recv), 30)) == -1)
+        {
+            perror("mq_send");
+        }
+        else
+        {
+            printf("Core Dumped\n", nbytes);
+        }
+    }
    
    
-   
+    pthread_join(threads[4], NULL);
     pthread_join(threads[3], NULL);
     pthread_join(threads[2], NULL);
     pthread_join(threads[1], NULL);
     pthread_join(threads[0], NULL);
    
-   
-   
-   
-   
-   
-//   char c;
-//   int num;
-//   char *device = "/dev/ttyO1";
-//   char str[100];
-   
-//   signal(SIGINT, int_handler);
-//   fd = open(device, O_RDWR | O_NOCTTY | O_NONBLOCK);
-//   if(fd == -1){
-              
-// 		perror("ERROR opening file descriptor\n");
-// 	}
+ 
 
-// 	configure = (struct termios*)malloc(sizeof(struct termios));
-// 	tty_config(configure, fd);
-	
-	
-// 	//read_bytes(fd, str, c);
-// 	//printf("%s\n",str);
-// 	transfer_bytes(fd, "hello\n");
-	
-	
-	
-// 	free(configure);
-// 	close(fd);
-       
-       
-       
        
 }

@@ -6,10 +6,10 @@
 *
 *********************************************************************************************************/
 /**
-* @file transporter.h
+* @file DateTimeService.h
 * @brief all the structures used by system
 *
-*This header file contains the interrupt handler and the enums for log and data
+*This header file provides the API to get the timestamp in the required format
 *
 * @author Mounika Reddy Edula
 * @       JayaKrishnan HJ
@@ -19,14 +19,9 @@
 */
 
 
-#ifndef _TRANSPORTER_H_
-#define _TRANSPORTER_H_
+#ifndef _DATETIMESERVICE_H
+#define _DATETIMESERVICE_H
 
-enum{
-       DATA = 1,
-       LOG
-};
-
-void int_handler();
+char* getDateString();
 
 #endif

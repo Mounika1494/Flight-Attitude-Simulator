@@ -1,6 +1,7 @@
 #include "system.h"
 #include "communication.h"
 #include "transporter.h"
+#include "heartbeat.h"
 #include <signal.h>
 
 static float Acceleration[3], Degrees[3];
@@ -8,11 +9,19 @@ static char str[100];
 
 void int_handler(){
        
+       mq_close(led_mq);
+       mq_close(send_mq);
+       mq_close(proc_mq);
+       mq_close(log_mq);
+       mq_unlink(SNDRCV_MQ3);
+       mq_unlink(SNDRCV_MQ4);
+       mq_unlink(SNDRCV_MQ5);
+       mq_unlink(SNDRCV_MQ6);
+       
        close(fd);
        exit(0);
        
 }
-
 
 
 void *uartThread(void *threadp){
@@ -31,6 +40,7 @@ void *uartThread(void *threadp){
        
        signal(SIGINT, int_handler);
        
+       
         fd = open(device, O_RDWR | O_NOCTTY | O_NONBLOCK);
        if(fd == -1){
        
@@ -42,6 +52,9 @@ void *uartThread(void *threadp){
        
        while(1){
               
+              
+              // printf("transporter thread \n");
+              
               if(tcsetattr(fd, TCSAFLUSH, configure) < 0){
 	    
 		perror("ERROR in set attr\n");
@@ -50,11 +63,11 @@ void *uartThread(void *threadp){
               read_bytes(fd, str);
               
               if(*str==0 || strlen(str)==1){
-                     printf("************************************\n");
+                     
                      continue;
               }
               
-              printf("string from tiva: %s\n\n", str);
+              // printf("string from tiva: %s\n\n", str);
               strcpy(debug, str);
               temp = strtok(str, " ");
        
@@ -62,7 +75,7 @@ void *uartThread(void *threadp){
                      
                      while (temp != NULL)
                      {
-                            printf ("%s\n",temp);
+                            //printf ("%s\n",temp);
                             temp = strtok (NULL, " ");
                      
                             if(temp != NULL){
@@ -96,7 +109,7 @@ void *uartThread(void *threadp){
                      }
                      else
                      {
-                            printf("Sending IMU data to process MQ %d bytes: message successfully sent\n", nbytes);
+                            // printf("Sending IMU data to process MQ %d bytes: message successfully sent\n", nbytes);
                      }
                      
                      
@@ -109,12 +122,12 @@ void *uartThread(void *threadp){
                      }
                      else
                      {
-                            printf("Sending IMU data to LOG MQ %d bytes: message successfully sent\n", nbytes);
+                            // printf("Sending IMU data to LOG MQ %d bytes: message successfully sent\n", nbytes);
                      }
                      
                      
               }else{
-                     printf("Error: Unknown data format\n");
+                     // printf("Error: Unknown data format\n");
                      read_bytes(fd, str);
                      continue;
               }
@@ -134,6 +147,13 @@ void *uartThread(void *threadp){
               //               transfer_bytes(fd, "NON_FATAL\n");
               //        }
               // }
+              
+              pthread_mutex_lock(&transportMutex);
+              heartBeatIndex[TRANSPORT]++;
+              pthread_cond_signal(&transportCond); // Signal as now globalvar is 1
+              pthread_mutex_unlock(&transportMutex);
+              
+              
        }
        
        

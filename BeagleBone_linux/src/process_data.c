@@ -1,6 +1,7 @@
 #include "system.h"
 #include "math.h"
 #include "communication.h"
+#include "heartbeat.h"
 
 void *processThread(void *threadp){
        
@@ -14,16 +15,19 @@ void *processThread(void *threadp){
        float degree_bias[3]={0.0,0.0,0.0};
        float Pitch, Roll, Yaw;
        float Acceleration_Pitch, Acceleration_Roll, Acceleration_Yaw;
+       int previous_state = NON_FATAL;
+       int current_state = NON_FATAL;;
+       
        
        while(1){
               
-              fprintf(stderr,"\n waiting on process_mq \n");
+              // fprintf(stderr,"\n waiting on process_mq \n");
               if((nbytes = mq_receive(proc_mq,(char*)&sensor_recv, MAX_MSG_SIZE, &prio)) == ERROR)
               {
                      perror("mq_receive");
               }
               else{
-                     printf("x_ddot : %f\n", sensor_recv.data.IMUdata.x_ddot);
+                     // printf("x_ddot : %f\n", sensor_recv.data.IMUdata.x_ddot);
                      
                      Acceleration[0] = sensor_recv.data.IMUdata.x_ddot;
                      Acceleration[1] = sensor_recv.data.IMUdata.y_ddot;
@@ -52,8 +56,8 @@ void *processThread(void *threadp){
                      Roll = 0.94 * Roll + 0.06 * Acceleration_Roll;
                      Yaw = 0.98 * Yaw + 0.02 * Acceleration_Yaw;
                      
-                     printf("pitch : %f\n", Pitch);
-                     printf("roll : %f\n", Roll);
+                     // printf("pitch : %f\n", Pitch);
+                     // printf("roll : %f\n", Roll);
                      
                      if (Pitch > 20){
                             
@@ -85,20 +89,40 @@ void *processThread(void *threadp){
                      if(Pitch > 20 || Pitch < -20 || Roll > 20 || Roll < -20){
                             //tiva_send.status = FATAL;
                             transfer_bytes(fd, "FATAL\n");
+                            current_state = FATAL;
                             
                      }else{
                             // tiva_send.status = NON_FATAL;
                             transfer_bytes(fd, "NON_FATAL\n");
+                            current_state = NON_FATAL;
+                     }
+                     
+                     if(current_state != previous_state){
+                            
+                            current_state = previous_state;
+                            
+                            sprintf(sensor_recv.data.logger_data,"%s"," DEUBG INFO: Attitude State Changed");
+                            
+                            sprintf(sensor_recv.timestamp,"%s",getDateString());
+                            
+                            if((nbytes = mq_send(log_mq, (char *)&sensor_recv, sizeof(sensor_recv), 30)) == -1)
+                            {
+                                   perror("mq_send");
+                            }
+                            else
+                            {
+                                  // printf("Core Dumped\n", nbytes);
+                            }
                      }
                      
                      if((nbytes = mq_send(led_mq, (char *)&led_send, sizeof(led_send), 30)) == ERROR)
                      {
-                            printf("%d\n",nbytes);
+                            // printf("%d\n",nbytes);
                             perror("mq_send");
                      }
                      else
                      {
-                            printf("Sending LED data to process MQ %d bytes: message successfully sent\n", nbytes);
+                            // printf("Sending LED data to process MQ %d bytes: message successfully sent\n", nbytes);
                      }
                      
                      // if((nbytes = mq_send(send_mq, (char *)&tiva_send, sizeof(tiva_send), 30)) == ERROR)
@@ -111,7 +135,10 @@ void *processThread(void *threadp){
                      //        printf("Sending fatal/non fatal info to Send MQ %d bytes: message successfully sent\n", nbytes);
                      // }
                      
-                     
+                     pthread_mutex_lock(&processMutex);
+                     heartBeatIndex[PROCESS]++;
+                     pthread_cond_signal(&processCond); // Signal as now globalvar is 1
+                     pthread_mutex_unlock(&processMutex);
                      
               }
               
