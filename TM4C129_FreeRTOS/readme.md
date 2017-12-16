@@ -1,4 +1,4 @@
-# Tiva TM4C1294 Launchpad #
+# Tiva TM4C1294 Launchpad FreeRTOS Demo #
 
 This firmware package is for simulating flight attitude simulator with IMU(MPU 9250) and remote logging, processing of IMU data is performed on BeagleBone Green. The communication between TIVA and BBG is through UART. This system is implemented with heartbeat on every functionality operational then LED3 will be ON. If any error LED4 will be ON. If BBG processing results in FATAL condition we are logging state of the system in EEPROM(Black box) which in reality can be more important data.
 

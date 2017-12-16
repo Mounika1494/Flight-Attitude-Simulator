@@ -1,5 +1,5 @@
 /**************************************************************************************
-*@Filename:IMU.c
+*@Filename:UART_test.c
 *
 *@Description: Test for uart see UARTPrintf in the serial terminal and connect in loopback mode
 *@Author:Mounika Reddy Edula

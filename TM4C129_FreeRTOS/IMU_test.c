@@ -14,13 +14,14 @@
 #include "console.h"
 #include <math.h>
 #include <stdio.h>
+#include "driverlib/rom.h"
+#include "driverlib/rom_map.h"
 
 #define M_PI    3.14159265359
 
 //int main(void) {
 //    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
 //    InitConsole();
-//    Alarms_Init();
 //    I2C_Init();
 //
 //    uint8_t id;
@@ -28,7 +29,7 @@
 //    /*Checking connection here*/
 //    id = MPU_WhoAmI();
 //    if(id == 0x71){
-//        UARTprintf("I2C working")
+//        UARTprintf("I2C working");
 //    }
 //    /*MPU9250 Simple Initialization*/
 //       MPU_WritePowerManagement1(CLKSEL_1);
@@ -59,7 +60,7 @@
 //       char Roll_String[16];
 //
 //       /*Sample rate = System frequency / desired sample frequency*/
-//       uint32_t Sample_Rate = SysCtlClockGet()/100;
+//       uint32_t Sample_Rate = MAP_SysCtlClockGet()/100;
 //
 //       while(1){
 //           /*Get data from Gyroscope and Accelerometer*/
@@ -94,6 +95,6 @@
 //           UARTprintf(" %s\n", Roll_String);
 //
 //           /*delay 10 ms*/
-//           SysCtlDelay(Sample_Rate);
+//           MAP_SysCtlDelay(Sample_Rate);
 //       }
 //   }
