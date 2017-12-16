@@ -1,3 +1,23 @@
+/**********************************************************************************************************
+* Copyright (C) 2017 by JayaKrishnan HJ
+*
+*Redistribution,modification or use of this software in source or binary fors is permitted as long 
+*as the files maintain this copyright. JayaKrishnan HJ is not liable for any misuse of this material
+*
+*********************************************************************************************************/
+/**
+* @file heartbeat.c
+* @brief all the functions to monitor tasks
+*
+*This file provides the mutex and conditional variable declarations for monitoring the tasks
+*
+* @author Mounika Reddy Edula
+* @       JayaKrishnan HJ
+* @date December 11 2017
+* @version 1.0
+*
+*/
+
 #include "system.h"
 #include "heartbeat.h"
 #include <time.h>

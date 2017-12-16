@@ -1,3 +1,23 @@
+/**********************************************************************************************************
+* Copyright (C) 2017 by JayaKrishnan HJ
+*
+*Redistribution,modification or use of this software in source or binary fors is permitted as long 
+*as the files maintain this copyright. JayaKrishnan HJ is not liable for any misuse of this material
+*
+*********************************************************************************************************/
+/**
+* @file transporter.c
+* @brief thread of receiving data from Tiva
+*
+*This file acts as the main thread of receiving data from Tiva
+*
+* @author Mounika Reddy Edula
+* @       JayaKrishnan HJ
+* @date December 11 2017
+* @version 1.0
+*
+*/
+
 #include "system.h"
 #include "communication.h"
 #include "transporter.h"

@@ -1,3 +1,23 @@
+/**********************************************************************************************************
+* Copyright (C) 2017 by JayaKrishnan HJ
+*
+*Redistribution,modification or use of this software in source or binary fors is permitted as long 
+*as the files maintain this copyright. JayaKrishnan HJ is not liable for any misuse of this material
+*
+*********************************************************************************************************/
+/**
+* @file process_data.c
+* @brief COmplementary filter processing and attitude state decision
+*
+*This file contains the Complementary filter processing and attitude state decision
+*
+* @author Mounika Reddy Edula
+* @       JayaKrishnan HJ
+* @date December 11 2017
+* @version 1.0
+*
+*/
+
 #include "system.h"
 #include "math.h"
 #include "communication.h"

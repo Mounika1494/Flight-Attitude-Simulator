@@ -1,3 +1,23 @@
+/**********************************************************************************************************
+* Copyright (C) 2017 by JayaKrishnan HJ
+*
+*Redistribution,modification or use of this software in source or binary fors is permitted as long 
+*as the files maintain this copyright. JayaKrishnan HJ is not liable for any misuse of this material
+*
+*********************************************************************************************************/
+/**
+* @file communication.c
+* @brief all the functions to communicate with Tiva through UART
+*
+*This file has the functions to read and write data via UART
+*
+* @author Mounika Reddy Edula
+* @       JayaKrishnan HJ
+* @date December 11 2017
+* @version 1.0
+*
+*/
+
 #include "communication.h"
 
 //mutex lock so that the i2c functions are nor pre- empted
