@@ -17,3 +17,4 @@ This firmware package is for simulating flight attitude simulator with IMU(MPU 9
 ## Notes ##
 If you want to test your IMU working then comment main in main.c and uncomment in IMU_test.c and look out in the serial terminal.
 If you want to test your UART then connect in loop back and comment main() in main.c and uncomment in UART_test.c and look out in the serial terminal.
+If you want to test your EEPROM working then comment main in main.c and uncomment in EEPROM_test.c and look out in serial terminal.
