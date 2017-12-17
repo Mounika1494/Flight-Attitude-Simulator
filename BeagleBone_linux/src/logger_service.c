@@ -21,7 +21,7 @@
 #include "system.h"
 #include "heartbeat.h"
 
-
+// Logs Tiva and BBG information on user defined file
 void *logThread(void *threadp){
        
        

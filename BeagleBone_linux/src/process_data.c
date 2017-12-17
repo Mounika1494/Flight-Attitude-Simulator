@@ -49,6 +49,8 @@ void *processThread(void *threadp){
               else{
                      // printf("x_ddot : %f\n", sensor_recv.data.IMUdata.x_ddot);
                      
+                     
+                     //Complementary filter
                      Acceleration[0] = sensor_recv.data.IMUdata.x_ddot;
                      Acceleration[1] = sensor_recv.data.IMUdata.y_ddot;
                      Acceleration[2] = sensor_recv.data.IMUdata.z_ddot;
@@ -79,6 +81,7 @@ void *processThread(void *threadp){
                      // printf("pitch : %f\n", Pitch);
                      // printf("roll : %f\n", Roll);
                      
+                     // Attitude conditions for LED glow
                      if (Pitch > 20){
                             
                             
@@ -106,6 +109,7 @@ void *processThread(void *threadp){
                             
                      }
                      
+                     // Determining if attitude is fatal or non fatal
                      if(Pitch > 20 || Pitch < -20 || Roll > 20 || Roll < -20){
                             //tiva_send.status = FATAL;
                             transfer_bytes(fd, "FATAL\n");
@@ -117,6 +121,8 @@ void *processThread(void *threadp){
                             current_state = NON_FATAL;
                      }
                      
+                     
+                     //Detecting an attitude state change
                      if(current_state != previous_state){
                             
                             current_state = previous_state;
@@ -135,6 +141,7 @@ void *processThread(void *threadp){
                             }
                      }
                      
+                     // send to LED message queue
                      if((nbytes = mq_send(led_mq, (char *)&led_send, sizeof(led_send), 30)) == ERROR)
                      {
                             // printf("%d\n",nbytes);

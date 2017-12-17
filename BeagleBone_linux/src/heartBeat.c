@@ -107,6 +107,7 @@ int8_t setLED(char* state){
 }
 
 
+// Heart beat monitor for monitoring health of the other tasks
 
 void *heartBeatThread(void *threadp){
     

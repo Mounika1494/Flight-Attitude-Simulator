@@ -23,7 +23,7 @@
 //mutex lock so that the i2c functions are nor pre- empted
 static pthread_mutex_t i2c_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-
+//Configure UART
 int8_t tty_config(struct termios *con, int descriptor){
     
     pthread_mutex_lock(&i2c_mutex);
@@ -54,6 +54,8 @@ int8_t tty_config(struct termios *con, int descriptor){
     
 }
 
+
+//read one byte 
 char read_one_byte(int fd){
     
     int i = 0;
@@ -74,6 +76,7 @@ char read_one_byte(int fd){
 	return c;
 }
 
+// read multiple bytes till newline
 int8_t read_bytes(int fd, char *str){
 	
 	pthread_mutex_lock(&i2c_mutex);
@@ -97,6 +100,8 @@ int8_t read_bytes(int fd, char *str){
     
 }
 
+
+//send multiple bytes 
 int8_t transfer_bytes(int fd, char *str){
 	
 	pthread_mutex_lock(&i2c_mutex);

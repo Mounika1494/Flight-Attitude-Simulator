@@ -27,6 +27,7 @@
 static float Acceleration[3], Degrees[3];
 static char str[100];
 
+//interrupt handler to close message queues and file decriptors
 void int_handler(){
        
        mq_close(led_mq);
@@ -43,7 +44,7 @@ void int_handler(){
        
 }
 
-
+// Thread which receives the data from Tiva
 void *uartThread(void *threadp){
        
        printf("uart thread\n");
@@ -67,6 +68,7 @@ void *uartThread(void *threadp){
               perror("ERROR opening file descriptor\n");
        }
        
+       //COnfigure UART
        configure = (struct termios*)malloc(sizeof(struct termios));
        tty_config(configure, fd);
        
@@ -74,14 +76,17 @@ void *uartThread(void *threadp){
               
               
               // printf("transporter thread \n");
-              
+              // flush the fd before every read
               if(tcsetattr(fd, TCSAFLUSH, configure) < 0){
 	    
 		perror("ERROR in set attr\n");
 		
 	       }
+	       
+	       // receive data from Tiva
               read_bytes(fd, str);
               
+              //Checking if an empty string is received
               if(*str==0 || strlen(str)==1){
                      
                      continue;

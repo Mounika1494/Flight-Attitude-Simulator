@@ -21,6 +21,8 @@
 #include "system.h"
 #include "heartbeat.h"
 
+
+//Initialize actuator LEDs
 static int8_t LED_init(){
        FILE *fp;
        int nbytes;
@@ -78,6 +80,8 @@ static int8_t LED_init(){
        return 0;
 }
 
+
+//set LED1
 int set_LED1(char* val){
        
        FILE *fp;
@@ -93,6 +97,7 @@ int set_LED1(char* val){
 }
 
 
+//set LED2
 int set_LED2(char* val){
        
        FILE *fp;
@@ -108,6 +113,7 @@ int set_LED2(char* val){
 }
 
 
+//set LED3
 int set_LED3(char* val){
        
        FILE *fp;
@@ -122,6 +128,8 @@ int set_LED3(char* val){
        
 }
 
+
+//set LED4
 int set_LED4(char* val){
        
        FILE *fp;
@@ -136,7 +144,7 @@ int set_LED4(char* val){
        
 }
 
-
+// This thread blocks on LED message queue and receives the LED data
 void *ledThread(void *threadp){
        
        printf("led thread\n");
