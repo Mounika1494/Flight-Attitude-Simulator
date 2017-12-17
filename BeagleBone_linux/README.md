@@ -15,7 +15,8 @@ This firmware package is for simulating flight attitude simulator with IMU(MPU 9
 * UART is connected to GPIO 24 (TX) and GPIO 26 (RX)
 
 ## Notes ##
-* To enable UART on BeagleBone, do : root@beaglebone:~# config-pin P9.24 uart and root@beaglebone:~# config-pin P9.26 uart
+* To enable UART on BeagleBone, do : ' config-pin P9.24 uart' and 'config-pin P9.26 uart' on bash.
 * beaglebone:green:usr0 is the heart beat LED. To enable it go to /sys/class/leds/ , cd into beaglebone:green:usr0, do 'echo gpio > trigger'
 * To load the kernel device driver, cd into the device driver folder and run make. Then do 'sudo insmod led_module.ko' to load the kernel driver.
 * That's all there is to do. Now just run make from the root directory and run ./APES <logger_file_name.txt>
+* The test folder in the device_driver directory has the tests for the kernel device driver for the user LED
