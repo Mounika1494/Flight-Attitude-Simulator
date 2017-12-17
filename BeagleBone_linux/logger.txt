@@ -1,0 +1,916 @@
+[2017-12-17 00:49:27] DEUBG INFO: LEDs initialized
+
+[2017-12-17 00:55:09] DEUBG INFO: LEDs initialized
+
+[2017-12-17 00:55:11]  TIVA IMU: I2C initialised
+
+[2017-12-17 00:55:11]  TIVA DEBUG INFO: EEPROM initialised
+
+[2017-12-17 00:57:23]  TIVA IMU: I2C initialised
+
+[2017-12-17 00:57:23]  TIVA DEBUG INFO: EEPROM initialised
+
+[2017-12-17 00:57:24]  TIVA DEBUG INFO:IMU initialised
+
+[2017-12-17 00:57:35] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:35] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:36] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:37] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:38] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:39] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:40] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:41] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:42] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:43] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:44] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:45] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:46] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47]  TIVA DEBUG ERROR:Logger thread is dead
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:47] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48]  TIVA DEBUG ERROR:Logger thread is dead
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:48] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
+[2017-12-17 00:57:49] DEUBG INFO: Attitude State Changed
+
