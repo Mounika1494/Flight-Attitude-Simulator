@@ -1,0 +1,1 @@
+cmd_/var/lib/cloud9/APES_2_kdd/BeagleBone_linux/device_driver/led_module.ko := ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /var/lib/cloud9/APES_2_kdd/BeagleBone_linux/device_driver/led_module.ko /var/lib/cloud9/APES_2_kdd/BeagleBone_linux/device_driver/led_module.o /var/lib/cloud9/APES_2_kdd/BeagleBone_linux/device_driver/led_module.mod.o

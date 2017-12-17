@@ -26,28 +26,84 @@
 
 
 //blink led with frequency given
-uint8_t blink_led(uint16_t period){
-	FILE* LED = NULL;
-	if(period == 0)
-	return -1;
-	const char *LEDBright = "/sys/class/leds/beaglebone:green:usr0/brightness";
-    int i =0;
-    for(i=0;i<2;i++){
-	if((LED = fopen(LEDBright,"r+")) !=NULL){
-		fwrite("1",sizeof(char),1,LED);
-		fclose(LED);
-	}
-	else
-	return -1;
- 	usleep(period);
- 	if((LED = fopen(LEDBright,"r+")) != NULL){
- 		fwrite("0",sizeof(char),1,LED);
- 		fclose(LED);
- 		}
- 	else
- 	return -1;
-	}
-	return 0;
+// uint8_t blink_led(uint16_t period){
+// 	FILE* LED = NULL;
+// 	if(period == 0)
+// 	return -1;
+// 	const char *LEDBright = "/sys/class/leds/beaglebone:green:usr0/brightness";
+//     int i =0;
+//     for(i=0;i<2;i++){
+// 	if((LED = fopen(LEDBright,"r+")) !=NULL){
+// 		fwrite("1",sizeof(char),1,LED);
+// 		fclose(LED);
+// 	}
+// 	else
+// 	return -1;
+//  	usleep(period);
+//  	if((LED = fopen(LEDBright,"r+")) != NULL){
+//  		fwrite("0",sizeof(char),1,LED);
+//  		fclose(LED);
+//  		}
+//  	else
+//  	return -1;
+// 	}
+// 	return 0;
+// }
+
+
+// "0" : Periodic mode
+// "1" : Latch mode
+int8_t setMode(char* mode){
+
+    FILE *fp;
+
+    if((fp = fopen("/sys/ebb/gpio53/mode", "w+"))!=NULL){
+        fwrite(mode, 1, sizeof(char), fp);
+        fclose(fp);
+    }else{
+        perror("File Open Error:");
+        return -1;
+    }
+    return 0;
+}
+
+
+
+// Set TIme period of LED flashing.
+// Unit milliseconds
+// Ensure mode is set to Periodic mode
+int8_t blink_led(char* period){
+
+    FILE *fp;
+
+    if((fp = fopen("/sys/ebb/gpio53/period", "w+"))!=NULL){
+        fwrite(period, 1, strlen(period)+1 , fp);
+        fclose(fp);
+    }else{
+        perror("File Open Error:");
+        return -1;
+    }
+    return 0;
+}
+
+
+
+// "1" : Latch LED ON
+// "0" : Latch LED OFF
+// Ensure mode is set to Latch mode
+
+int8_t setLED(char* state){
+
+    FILE *fp;
+
+    if((fp = fopen("/sys/ebb/gpio53/ledState", "w+"))!=NULL){
+        fwrite(state, 1, sizeof(char), fp);
+        fclose(fp);
+    }else{
+        perror("File Open Error:");
+        return -1;
+    }
+    return 0;
 }
 
 
@@ -68,6 +124,8 @@ void *heartBeatThread(void *threadp){
     heartBeatIndex[LOGGER] = -1;
     heartBeatIndex[LED] = -1;
     
+    setMode("0");
+    
        while(1){
            
            
@@ -82,10 +140,13 @@ void *heartBeatThread(void *threadp){
                 rc = pthread_cond_timedwait(&transportCond, &transportMutex, &timeToWait); // We wait until globalvar is 1
                 if(rc == ETIMEDOUT){
                     printf("******************transport Heartbeat timed out\n\n");
+                    setMode("1");
+                    setLED("0");
                     break;
                 }else{
                     printf("transport heart beat received******************\n");
-                    blink_led(1000);
+                     setMode("0");
+                    blink_led("1000");
                     break;
                 }
             }
@@ -107,10 +168,13 @@ void *heartBeatThread(void *threadp){
                 rc = pthread_cond_timedwait(&processCond, &processMutex, &timeToWait); // We wait until globalvar is 1
                 if(rc == ETIMEDOUT){
                     printf("*****************process Heartbeat timed out\n\n");
+                    setMode("1");
+                    setLED("0");
                     break;
                 }else{
                     printf("process heart beat received******************\n");
-                    blink_led(1000);
+                     setMode("0");
+                    blink_led("1000");
                     break;
                 }
             }
@@ -131,10 +195,13 @@ void *heartBeatThread(void *threadp){
                 rc = pthread_cond_timedwait(&ledCond, &ledMutex, &timeToWait); // We wait until globalvar is 1
                 if(rc == ETIMEDOUT){
                     printf("****************led Heartbeat timed out\n\n");
+                    setMode("1");
+                    setLED("0");
                     break;
                 }else{
                     printf("led heart beat received******************\n");
-                    blink_led(1000);
+                    setMode("0");
+                    blink_led("1000");
                     break;
                 }
                 
