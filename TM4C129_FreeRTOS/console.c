@@ -1,7 +1,7 @@
 #include "console.h"
 
 /**************************************************************************************
-*@Filename:i2c.c
+*@Filename:console.c
 *
 *@Description: Initialise the UART pins and Clock for using UARTPrintf
 *

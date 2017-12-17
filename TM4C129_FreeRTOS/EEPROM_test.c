@@ -22,6 +22,9 @@
 #include "driverlib/interrupt.h"
 #include "driverlib/eeprom.h"
 #include "utils/uartstdio.h"
+#include "console.h"
+#include "driverlib/rom.h"
+#include "driverlib/rom_map.h"
 
 
 //#define E2PROM_TEST_ADRES 0x0000
@@ -44,14 +47,13 @@
 //{
 //    uint32_t e2size,e2block;
 //
-//    SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ); // islemcimizi 80 Mhz'e ayarlıyoruz.
+//    MAP_SysCtlClockFreqSet((SYSCTL_XTAL_25MHZ |
+//                                SYSCTL_OSC_MAIN |
+//                                SYSCTL_USE_PLL |
+//                                SYSCTL_CFG_VCO_480), 120000000);
 //
 //    /* UART SETTINGS */
-//    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
-//    GPIOPinConfigure(GPIO_PA0_U0RX);
-//    GPIOPinConfigure(GPIO_PA1_U0TX);
-//    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
-//    UARTStdioConfig(GPIO_PORTA_BASE,115200,SysCtlClockGet());
+//    InitConsole();
 //    /*******************************/
 //
 //    /* EEPROM SETTINGS */
@@ -59,7 +61,7 @@
 //    EEPROMInit(); // EEPROM start
 //    /*******************************/
 //
-//    UARTprintf("EEPROM Test Program ,, Teknikyazi.com\r\n");
+//    UARTprintf("EEPROM Test Program\r\n");
 //
 //
 //    e2size = EEPROMSizeGet(); // Get EEPROM Size
@@ -75,6 +77,6 @@
 //    UARTprintf("Read Try > Address %u: Struct : {%u,%u,%u,%s}\n", E2PROM_TEST_ADRES, e2prom_read_value.value1, e2prom_read_value.value2, e2prom_read_value.value3, e2prom_read_value.value4);
 //
 //}
-//
-//
-//
+
+
+

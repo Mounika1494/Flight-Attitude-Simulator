@@ -110,7 +110,6 @@ void uart_init()
     //
     // Prompt for text to be entered.
     //
-    //UARTSend((uint8_t *)"\033[2JEnter text: ", 16);
     UARTprintf("Uart initialised\n");
 }
 
@@ -156,12 +155,6 @@ UARTIntHandler(void)
             break;
         }
         i++;
-        //UARTprintf("Recieved %c\n",ROM_UARTCharGetNonBlocking(UART3_BASE));
-        //
-        // Read the next character from the UART and write it back to the UART.
-        //
-        //ROM_UARTCharPutNonBlocking(UART3_BASE,
-          //                         ROM_UARTCharGetNonBlocking(UART3_BASE));
 
         //
         // Blink the LED to show a character transfer is occuring.

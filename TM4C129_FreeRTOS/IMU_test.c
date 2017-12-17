@@ -25,11 +25,11 @@
 //    I2C_Init();
 //
 //    uint8_t id;
-//
+//    UARTprintf("IMU and I2C test\n");
 //    /*Checking connection here*/
 //    id = MPU_WhoAmI();
 //    if(id == 0x71){
-//        UARTprintf("I2C working");
+//        UARTprintf("I2C working\n");
 //    }
 //    /*MPU9250 Simple Initialization*/
 //       MPU_WritePowerManagement1(CLKSEL_1);
@@ -62,7 +62,6 @@
 //       /*Sample rate = System frequency / desired sample frequency*/
 //       uint32_t Sample_Rate = MAP_SysCtlClockGet()/100;
 //
-//       while(1){
 //           /*Get data from Gyroscope and Accelerometer*/
 //           MPU9250_Motion(Acceleration, Degrees);
 //           MPU9250_Temperature(&Temperature);
@@ -96,5 +95,4 @@
 //
 //           /*delay 10 ms*/
 //           MAP_SysCtlDelay(Sample_Rate);
-//       }
 //   }

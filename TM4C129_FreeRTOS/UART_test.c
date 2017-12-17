@@ -22,8 +22,10 @@
 
 //int main()
 //{
+//    InitConsole();
 //    uart_init();
 //    UARTSendbytes("w",1);
+//    UARTprintf("Sent data");
 //}
 
 
